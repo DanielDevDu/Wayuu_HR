@@ -13,9 +13,9 @@ from rest_framework.response import Response
 
 class EmployeeViewSet(viewsets.ModelViewSet):
 #class EmployeeViewSet(generics.ListAPIView):
-    # """permission_classes = [
-    #     permissions.IsAuthenticated,
-    # ]"""
+    """permission_classes = [
+         permissions.IsAuthenticated,
+    ]"""
     serializer_class = EmployeeSerializer
 
     #employees = Employee.objects.all().filter(status=True)

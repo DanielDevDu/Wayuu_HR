@@ -15,7 +15,7 @@ from django.utils import timezone
 import uuid
 import pghistory
 import pgtrigger
-from sys_admin.models.base_model import BaseModel
+from sys_admin.models.base_model import BaseModel, EmployeeManager
 
 class Employee(BaseModel, AbstractBaseUser):
     """
@@ -54,9 +54,14 @@ class Employee(BaseModel, AbstractBaseUser):
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ['email']
     
+    objects = EmployeeManager()
 
     def __str__(self) -> str:
         return self.email
+    
+    @property
+    def get_full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)
     
     def has_perm(self, perm, obj=None):
         return self.is_admin

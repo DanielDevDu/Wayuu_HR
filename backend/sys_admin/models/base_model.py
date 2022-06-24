@@ -44,7 +44,7 @@ class EmployeeManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password=None):
+    def create_superuser(self, email, username, password=None): 
         """
         ------------------------------
         Creates and saves a superuser

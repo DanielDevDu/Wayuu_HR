@@ -1,11 +1,11 @@
 
 from django.contrib import admin
 from sys_admin.models import *
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 # Register your models here.
 
-class EmployeeAdmin(admin.ModelAdmin):
+class EmployeeAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
