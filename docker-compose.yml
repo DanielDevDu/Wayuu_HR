@@ -29,14 +29,15 @@ services:
       - db
   
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
     container_name: frontend
+    restart: on-failure
     volumes:
       - ./frontend:/app
-    depends_on:
-      - backend
+      - /app/node_modules
     ports:
-      - 80:80
+      - 3000:3000
   
   # nginx_backend_server:
   #   build: ./nginx_backend_server
