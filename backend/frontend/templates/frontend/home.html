@@ -1,0 +1,15 @@
+{% extends "frontend/index.html" %}
+{% block content %}
+    {% for employee in employees %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ employee.username }}</a>
+              <small class="text-muted">{{ employee.email }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ employee.username }}</a></h2>
+            <p class="article-content">{{ employee.email }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
