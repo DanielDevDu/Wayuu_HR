@@ -1,32 +1,32 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from sys_admin.api.views import *
-from record.api.views import *
-from management.api.views import *
-from legal.api.views import *
+from apps.sys_admin.api.views import *
+from apps.record.api.views import *
+from apps.management.api.views import *
+from apps.legal.api.views import *
 
 
 router = DefaultRouter()
 # Sys Admin
 #employee_list = EmployeeViewSet.as_view({'get': 'list'})
-router.register('employees', EmployeeViewSet, 'employees')
+router.register('employee', EmployeeViewSet, 'employee')
 
 # Record
-router.register('resumes', ResumeViewSet, 'resumes')
+router.register('resume', ResumeViewSet, 'resume')
 router.register('experience', ExperienceViewSet, 'experience')
 router.register('education', EducationViewSet, 'education')
 
 # Management
-router.register('deparments', DepartmentViewSet, 'deparments')
-router.register('roles', RoleViewSet, 'roles')
-router.register('reports', ReportViewSet, 'reports')
-router.register('teams', TeamViewSet, 'teams')
+router.register('department', DepartmentViewSet, 'department')
+router.register('role', RoleViewSet, 'role')
+router.register('report', ReportViewSet, 'report')
+router.register('team', TeamViewSet, 'team')
 
 # Legal
-router.register('salaries', SalaryViewSet, 'salaries')
+router.register('salary', SalaryViewSet, 'salary')
 router.register('vacation', VacationViewSet, 'vacation')
-router.register('social_security', SocialSecurityViewSet, 'social_security')
+router.register('socialsecurity', SocialSecurityViewSet, 'socialsecurity')
 
 urlpatterns = [
     path("", include(router.urls)),

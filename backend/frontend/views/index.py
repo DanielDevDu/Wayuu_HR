@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from sys_admin.models import Employee
+from apps.sys_admin.models import Employee
 
 def index(request):
   return render(request, 'frontend/index.html')

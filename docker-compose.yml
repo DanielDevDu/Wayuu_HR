@@ -28,16 +28,16 @@ services:
     depends_on:
       - db
   
-  frontend:
-    build: 
-      context: ./frontend
-    container_name: frontend
-    restart: on-failure
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    ports:
-      - 3000:3000
+  # frontend:
+  #   build: 
+  #     context: ./frontend
+  #   container_name: frontend
+  #   restart: on-failure
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - 3000:3000
   
   # nginx_backend_server:
   #   build: ./nginx_backend_server
