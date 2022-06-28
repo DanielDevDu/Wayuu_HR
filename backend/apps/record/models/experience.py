@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
 import pghistory
-from apps.sys_admin.models.base_model import BaseModel
+from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
 
 class Experience(BaseModel):
@@ -22,7 +22,7 @@ class Experience(BaseModel):
     Create Table in Postgres Database
     ----------------------------------
     """
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE, related_name="experience")
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="experience")
     job_title = models.CharField(max_length=100)
     job_description = models.TextField()
     contact_name = models.CharField(max_length=200, blank=True)

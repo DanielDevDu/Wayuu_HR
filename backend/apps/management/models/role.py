@@ -14,8 +14,9 @@ from django.utils import timezone
 import uuid
 import pghistory
 from apps.management.models.department import Department
-from apps.sys_admin.models.base_model import BaseModel
+from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
+from django.utils.translation import gettext_lazy as _
 
 
 class Role(BaseModel):
@@ -26,12 +27,12 @@ class Role(BaseModel):
     """
     
     name = models.CharField(max_length=100)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="roles")
     job_description = models.TextField()
     default_contract = models.CharField(max_length=100, default="Pdf option")
     default_salary = models.FloatField()
 
     employee = models.ManyToManyField(Employee, related_name="roles", through='Employee_Role')
+    department = models.ManyToManyField(Department, related_name="roles_by_deparment", through='Department_Role')
 
     def __str__(self) -> str:
         return self.name
@@ -57,3 +58,21 @@ class Employee_Role(BaseModel):
 
     def __str__(self) -> str:
         return "{}-{}".format(self.employee.__str__(), self.role.__str__())
+
+class Department_Role(BaseModel):
+    """
+    ----------------------------------
+    Many-to-Many relationship between
+    Employee and Role tables
+    ----------------------------------
+    """
+
+    deparment = models.ForeignKey(Department, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    start_date = models.DateTimeField(
+        help_text="Date when the role was created",
+        default=timezone.now
+    )
+
+    def __str__(self) -> str:
+        return "Role {} in department {}".format(self.role.__str__(), self.deparment.__str__())

@@ -26,7 +26,8 @@ class RoleSerializer(BaseSerializer):
     )
     department = serializers.HyperlinkedRelatedField(
         read_only=True,
-        view_name="department-detail"
+        view_name="department-detail",
+        many=True
     )
     class Meta:
         model = Role

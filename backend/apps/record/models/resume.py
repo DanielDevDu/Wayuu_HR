@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
 import pghistory
-from apps.sys_admin.models.base_model import BaseModel
+from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
@@ -41,7 +41,7 @@ class Resume(BaseModel):
         verbose_name=_("Description"), default=_("A brief description about yourself")
     )
     residential_address = models.CharField(max_length=200)
-    country = CountryField(verbose_name=_("Country"), default="KE")
+    country = CountryField(verbose_name=_("Country"), default="COL")
     city = models.CharField(verbose_name=_("City"), max_length=100, default="Medellin")
     phone_number = PhoneNumberField(
         verbose_name=_("Phone Number"), max_length=30, default="+57324204242"

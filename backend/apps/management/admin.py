@@ -12,4 +12,5 @@ admin.site.register([
     Employee_Role,
     Employee_Team,
     Employee_Report,
+    Department_Role
 ])

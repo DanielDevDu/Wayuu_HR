@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
 import pghistory
-from apps.sys_admin.models.base_model import BaseModel
+from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
 
 class Department(BaseModel):

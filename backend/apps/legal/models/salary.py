@@ -14,8 +14,9 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
 import pghistory
-from apps.sys_admin.models.base_model import BaseModel
+from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
+from django.utils.translation import gettext_lazy as _
 
 class Salary(BaseModel):
     """
@@ -23,7 +24,6 @@ class Salary(BaseModel):
     Create Table in Postgres Database
     ----------------------------------
     """
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
     amount = models.FloatField()
     contract = models.CharField(max_length=100, default="pdf option or collila de pago?")
 
@@ -44,7 +44,7 @@ class Employee_Salary(BaseModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     salary = models.ForeignKey(Salary, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(
-        help_text="Date when you the company pays",
+        help_text=_("Date when you the company pays"),
         default=timezone.now
     )
 

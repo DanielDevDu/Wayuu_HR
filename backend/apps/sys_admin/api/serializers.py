@@ -7,6 +7,7 @@ from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.reverse import reverse
 from apps.common.serializer import BaseSerializer
+from apps.record.api.serializers import ResumeSerializer
 
 resumes = Resume.objects.all()
 class ResumeSerializer(serializers.HyperlinkedModelSerializer):
@@ -19,6 +20,9 @@ class EmployeeSerializer(BaseSerializer):
 
     # Add field with relationship with other tables
     #lookup_field = 'employee'
+
+    #Custom
+    full_name = serializers.SerializerMethodField()
 
     # Management
     roles = serializers.HyperlinkedRelatedField(
@@ -47,18 +51,21 @@ class EmployeeSerializer(BaseSerializer):
     #resume = serializers.SerializerMethodField()
     #resume = serializers.StringRelatedField()
     #resume = ResumeSerializer(read_only=True)
-    resume = serializers.HyperlinkedRelatedField(
+    """resume = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="resume-detail"
         #context={'request': resumes}
-    )
+    )"""
+    # resume = ResumeSerializer()
     education = serializers.HyperlinkedIdentityField(
         view_name="education-detail",
-        read_only=True
+        read_only=True,
+        many=True
     )
     experience = serializers.HyperlinkedRelatedField(
         read_only=True,
-        view_name="experience-detail"
+        view_name="experience-detail",
+        many=True
     )
 
     # Legal
@@ -69,16 +76,27 @@ class EmployeeSerializer(BaseSerializer):
     )
     socialsecurity = serializers.HyperlinkedRelatedField(
         read_only=True,
-        view_name="socialsecurity-detail"
+        view_name="socialsecurity-detail",
+        many=True
     )
     vacation = serializers.HyperlinkedRelatedField(
         read_only=True,
-        view_name="vacation-detail"
+        view_name="vacation-detail",
+        many=True
     )
 
     class Meta:
         model = Employee
         fields = '__all__' # Add all fields
+        # depth=2
+
+    def get_full_name(self, obj):
+        return f'{obj.first_name} {obj.last_name}'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        del representation["password"]
+        return representation
     
     """def get_resume(self, obj):
         other = Resume.objects.filter(employee=obj.id).first()

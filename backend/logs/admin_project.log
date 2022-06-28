@@ -9648,3 +9648,1708 @@ TypeError: 'Department' object is not iterable
 2022-06-26 01:33:58,458 django.request WARNING  Not Found: /api/education/b86ff584-b2d1-4187-922f-de599a578d68/
 2022-06-26 01:34:54,743 django.request WARNING  Not Found: /api/education/b86ff584-b2d1-4187-922f-de599a578d68/
 2022-06-26 01:35:34,424 django.request WARNING  Not Found: /api/education/86956da0-0d39-4e00-9b4c-4ff9788f321a/
+2022-06-26 09:29:20,129 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:29:13,677 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:29:20,570 django.request ERROR    Internal Server Error: /api/employee/86956da0-0d39-4e00-9b4c-4ff9788f321a/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 180, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 248, in inner
+    self._setup()
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 384, in _setup
+    self._wrapped = self._setupfunc()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 50, in __getitem__
+    return self._session[key]
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 185, in _get_session
+    self._session_cache = self.load()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 435, in get
+    num = len(clone)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+2022-06-26 10:29:20,870 django.request WARNING  Not Found: /favicon.ico
+2022-06-26 10:29:25,050 django.request ERROR    Internal Server Error: /admin/auth/group/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 180, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 622, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/cache.py", line 56, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 225, in inner
+    if not self.has_permission(request):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 199, in has_permission
+    return request.user.is_active and request.user.is_staff
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 248, in inner
+    self._setup()
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 384, in _setup
+    self._wrapped = self._setupfunc()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 50, in __getitem__
+    return self._session[key]
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 185, in _get_session
+    self._session_cache = self.load()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 435, in get
+    num = len(clone)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+2022-06-26 10:29:28,428 django.request ERROR    Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 180, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 254, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/cache.py", line 56, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 225, in inner
+    if not self.has_permission(request):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 199, in has_permission
+    return request.user.is_active and request.user.is_staff
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 248, in inner
+    self._setup()
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 384, in _setup
+    self._wrapped = self._setupfunc()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 50, in __getitem__
+    return self._session[key]
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 185, in _get_session
+    self._session_cache = self.load()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 435, in get
+    num = len(clone)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+2022-06-26 10:29:30,634 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "sys_admin_employee" does not exist
+LINE 1: ..."is_active", "sys_admin_employee"."is_staff" FROM "sys_admin...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/app/frontend/views/index.py", line 8, in home
+    print(Employee.objects.all())
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 256, in __repr__
+    data = list(self[:REPR_OUTPUT_SIZE + 1])
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "sys_admin_employee" does not exist
+LINE 1: ..."is_active", "sys_admin_employee"."is_staff" FROM "sys_admin...
+                                                             ^
+
+2022-06-26 10:29:32,657 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 180, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 248, in inner
+    self._setup()
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 384, in _setup
+    self._wrapped = self._setupfunc()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 50, in __getitem__
+    return self._session[key]
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 185, in _get_session
+    self._session_cache = self.load()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 435, in get
+    num = len(clone)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+2022-06-26 10:30:53,633 django.request WARNING  Not Found: /api/employee/86956da0-0d39-4e00-9b4c-4ff9788f321a/
+2022-06-26 10:39:40,192 django.request WARNING  Forbidden: /api/resume/0543a0a8-5f94-420e-a214-8b59e8afd682/
+2022-06-26 10:41:38,759 django.utils.autoreload INFO     /app/admin_project/urls.py changed, reloading.
+2022-06-26 10:41:40,427 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:42:19,641 django.utils.autoreload INFO     /app/apps/sys_admin/admin.py changed, reloading.
+2022-06-26 10:42:21,110 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:42:25,831 django.utils.autoreload INFO     /app/apps/sys_admin/admin.py changed, reloading.
+2022-06-26 10:42:27,462 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:42:50,100 django.utils.autoreload INFO     /app/apps/sys_admin/admin.py changed, reloading.
+2022-06-26 10:42:51,682 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:45:35,272 django.utils.autoreload INFO     /app/admin_project/urls.py changed, reloading.
+2022-06-26 10:45:37,040 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:49:43,268 django.utils.autoreload INFO     /app/apps/record/models/resume.py changed, reloading.
+2022-06-26 10:49:44,865 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 10:49:59,595 django.utils.autoreload INFO     /app/apps/record/models/resume.py changed, reloading.
+2022-06-26 10:50:01,202 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:19:46,235 django.utils.autoreload INFO     /app/admin_project/wsgi.py changed, reloading.
+2022-06-26 12:19:47,614 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:19:53,295 django.utils.autoreload INFO     /app/admin_project/wsgi.py changed, reloading.
+2022-06-26 12:19:54,578 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:20:33,827 django.utils.autoreload INFO     /app/manage.py changed, reloading.
+2022-06-26 12:20:38,399 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:20:39,942 django.utils.autoreload INFO     /app/manage.py changed, reloading.
+2022-06-26 12:20:43,425 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:20:44,979 django.utils.autoreload INFO     /app/manage.py changed, reloading.
+2022-06-26 12:20:46,320 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:22:08,933 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:23:01,491 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:23:02,891 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:24:02,904 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:24:04,224 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:24:47,783 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:24:48,771 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:24:55,021 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:24:55,796 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:24:59,021 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:25:00,192 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:25:07,757 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:25:09,042 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:25:47,436 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-26 12:25:48,723 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:25:57,980 django.request WARNING  Not Found: /api/education/6af453cd-174f-4aed-af85-ed0df245c498/
+2022-06-26 12:26:17,199 django.request WARNING  Not Found: /api/education/6af453cd-174f-4aed-af85-ed0df245c498/
+2022-06-26 12:29:06,764 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:29:08,143 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:29:27,401 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:31:43,600 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:32:32,142 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:32:33,488 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 12:32:53,779 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 12:32:55,134 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 22:31:59,655 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 22:32:01,563 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 22:38:17,375 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 22:38:18,340 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 22:38:19,524 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 22:38:20,454 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 22:38:38,906 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 22:38:39,634 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 22:38:41,826 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 22:38:42,573 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-26 22:38:44,751 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-26 22:38:46,082 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:33:18,448 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:33:24,089 django.request ERROR    Internal Server Error: /api/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 180, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/request.py", line 227, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 248, in inner
+    self._setup()
+  File "/usr/local/lib/python3.9/site-packages/django/utils/functional.py", line 384, in _setup
+    self._wrapped = self._setupfunc()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 50, in __getitem__
+    return self._session[key]
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/base.py", line 185, in _get_session
+    self._session_cache = self.load()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/sessions/backends/db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 435, in get
+    num = len(clone)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+2022-06-27 14:33:24,420 django.request WARNING  Not Found: /favicon.ico
+2022-06-27 14:34:53,768 django.request WARNING  Forbidden: /api/resume/
+2022-06-27 14:34:56,623 django.request WARNING  Forbidden: /api/salary/
+2022-06-27 14:38:08,337 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/apps/sys_admin/api/views.py", line 36, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:39:54,496 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:39:55,868 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:40:00,484 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/apps/sys_admin/api/views.py", line 36, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 378, in to_representation
+    assert 'request' in self.context, (
+AssertionError: `HyperlinkedRelatedField` requires the request in the serializer context. Add `context={'request': request}` when instantiating the serializer.
+2022-06-27 14:40:06,850 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:40:08,031 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:40:10,548 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:40:11,872 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:40:54,703 django.request ERROR    Internal Server Error: /api/employee/62412e35-844e-47b0-8802-a00b0acf4bb8/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:41:17,119 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:41:18,643 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:41:23,275 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:41:24,738 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:41:25,604 django.request ERROR    Internal Server Error: /api/employee/62412e35-844e-47b0-8802-a00b0acf4bb8/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:41:33,162 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:43:54,743 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:43:56,296 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:43:57,362 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:44:23,908 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:44:25,202 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:44:26,262 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:45:26,244 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 14:45:27,486 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:45:44,811 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 337, in get_url
+    lookup_value = getattr(obj, self.lookup_field)
+AttributeError: 'RelatedManager' object has no attribute 'pk'
+2022-06-27 14:48:07,051 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 14:48:08,410 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:48:11,935 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 14:48:13,271 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:48:15,597 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 14:48:16,855 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:48:21,515 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 14:48:22,818 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:48:29,484 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 14:48:30,728 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:48:52,068 django.request WARNING  Not Found: /media/fotoperfil.jpeg
+2022-06-27 14:54:17,946 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:54:19,334 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:54:22,909 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:54:24,158 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:55:19,568 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:55:20,975 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:55:26,457 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:55:27,650 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:55:46,372 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:55:47,663 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:55:54,153 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:55:55,343 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:55:58,739 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:55:59,909 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:56:02,248 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:56:04,186 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:57:50,868 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:57:52,720 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:57:56,219 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:57:58,269 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 14:58:02,767 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 14:58:04,389 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:33:45,359 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 15:33:46,754 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:36:11,126 django.request ERROR    Internal Server Error: /api/role/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 401, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 339, in get_url
+    return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/reverse.py", line 47, in reverse
+    url = _reverse(viewname, args, kwargs, request, format, **extra)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/reverse.py", line 60, in _reverse
+    url = django_reverse(viewname, args=args, kwargs=kwargs, **extra)
+  File "/usr/local/lib/python3.9/site-packages/django/urls/base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/urls/resolvers.py", line 729, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'department-detail' with keyword arguments '{'pk': <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x7fe55bdbac70>}' not found. 2 pattern(s) tried: ['api/department/(?P<pk>[^/.]+)\\.(?P<format>[a-z0-9]+)/?$', 'api/department/(?P<pk>[^/.]+)/$']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 416, in to_representation
+    raise ImproperlyConfigured(msg % self.view_name)
+django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlinked relationship using view name "department-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.
+2022-06-27 15:36:38,080 django.utils.autoreload INFO     /app/apps/management/api/serializers.py changed, reloading.
+2022-06-27 15:36:39,486 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:36:42,796 django.utils.autoreload INFO     /app/apps/management/api/serializers.py changed, reloading.
+2022-06-27 15:36:43,970 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:38:26,398 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:38:27,753 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:38:30,261 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:38:31,430 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:38:34,944 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:38:36,177 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:38:39,676 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:38:41,002 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:04,224 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:05,603 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:09,121 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:10,326 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:20,099 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:21,348 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:37,851 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:39,199 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:40,647 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:41,808 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:43,006 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:44,170 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:48,403 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:49,609 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:52,061 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:53,263 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:39:55,475 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:39:56,652 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:40:02,248 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:40:03,617 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:40:05,082 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:40:06,276 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:40:31,702 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:40:33,035 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:40:35,504 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:40:36,654 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:40:37,848 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:40:38,942 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:40:59,480 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:00,659 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:07,289 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:08,559 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:10,778 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:11,916 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:15,420 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:16,613 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:21,180 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:22,392 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:39,391 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:40,764 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:43,255 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:44,627 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:48,173 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:49,382 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:53,938 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:55,160 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:41:56,567 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:41:57,934 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:43:46,550 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:44:32,482 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:44:33,868 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:44:35,368 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:44:36,535 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:45:32,648 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:47:41,178 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:49:21,180 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:49:22,571 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:49:28,227 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:49:29,559 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:49:52,127 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:50:56,259 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:50:57,572 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:50:59,008 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:51:00,168 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:51:12,537 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:51:13,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:51:33,151 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:51:49,110 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 15:51:50,416 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 15:57:42,939 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:03:00,997 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:03:02,210 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:03:03,404 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:03:04,646 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:03:36,187 django.utils.autoreload INFO     /app/apps/management/models/__init__.py changed, reloading.
+2022-06-27 16:03:37,369 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:03:38,537 django.utils.autoreload INFO     /app/apps/management/models/__init__.py changed, reloading.
+2022-06-27 16:03:39,696 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:04:06,066 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:04:07,281 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:04:09,511 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:04:10,618 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:04:22,037 django.utils.autoreload INFO     /app/apps/management/models/__init__.py changed, reloading.
+2022-06-27 16:04:23,293 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:05:08,267 django.utils.autoreload INFO     /app/apps/management/models/__init__.py changed, reloading.
+2022-06-27 16:05:09,560 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:05:19,358 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:05:20,459 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:09:16,993 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:09:26,766 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:09:28,016 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:09:42,024 django.utils.autoreload INFO     /app/apps/management/models/role.py changed, reloading.
+2022-06-27 16:09:43,433 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:11:14,994 django.request WARNING  Forbidden: /api/role/9743d555-02bc-4f25-9f81-bbb18274c675/
+2022-06-27 16:11:22,962 django.request WARNING  Forbidden: /api/role/
+2022-06-27 16:13:01,938 django.utils.autoreload INFO     /app/apps/management/admin.py changed, reloading.
+2022-06-27 16:13:03,329 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 16:13:04,702 django.utils.autoreload INFO     /app/apps/management/admin.py changed, reloading.
+2022-06-27 16:13:05,923 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:29,530 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:30,860 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:32,438 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:33,771 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:39,390 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:40,659 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:43,014 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:44,174 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:48,571 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:49,775 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:52,152 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:53,303 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:55,689 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:33:56,901 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:33:59,283 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:34:00,484 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:34:07,970 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:34:09,217 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:34:10,685 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:34:11,953 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:34:13,444 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:34:14,662 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:34:30,721 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:34:32,037 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:35:11,699 django.request ERROR    Internal Server Error: /admin/sys_admin/employee/add/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 622, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/cache.py", line 56, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 236, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/debug.py", line 90, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/admin.py", line 99, in add_view
+    return self._add_view(request, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/admin.py", line 126, in _add_view
+    return super().add_view(request, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1670, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1549, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1599, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1108, in save_model
+    obj.save()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 743, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 791, in save_base
+    post_save.send(
+  File "/usr/local/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 170, in send
+    return [
+  File "/usr/local/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 171, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/app/apps/record/signals.py", line 23, in create_user_resume
+    Role.objects.create(employee=instance)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 455, in create
+    obj = self.model(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 502, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/fields/related_descriptors.py", line 545, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use employee.set() instead.
+2022-06-27 19:36:34,236 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:36:35,731 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:38:00,868 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:38:02,211 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:38:09,841 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:38:11,155 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:38:42,688 django.request ERROR    Internal Server Error: /admin/sys_admin/employee/add/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 622, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/cache.py", line 56, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 236, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/debug.py", line 90, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/admin.py", line 99, in add_view
+    return self._add_view(request, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/admin.py", line 126, in _add_view
+    return super().add_view(request, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1670, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1549, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1599, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1108, in save_model
+    obj.save()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 743, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 791, in save_base
+    post_save.send(
+  File "/usr/local/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 170, in send
+    return [
+  File "/usr/local/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 171, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/app/apps/record/signals.py", line 23, in create_user_resume
+    Role.objects.create(employee=instance.set())
+AttributeError: 'Employee' object has no attribute 'set'
+2022-06-27 19:39:04,011 django.utils.autoreload INFO     /app/apps/record/signals.py changed, reloading.
+2022-06-27 19:39:05,459 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:39:06,596 django.request ERROR    Internal Server Error: /admin/sys_admin/employee/add/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 622, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/cache.py", line 56, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 236, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/debug.py", line 90, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/admin.py", line 99, in add_view
+    return self._add_view(request, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/admin.py", line 126, in _add_view
+    return super().add_view(request, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1670, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1549, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1599, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1108, in save_model
+    obj.save()
+  File "/usr/local/lib/python3.9/site-packages/django/contrib/auth/base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 743, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 791, in save_base
+    post_save.send(
+  File "/usr/local/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 170, in send
+    return [
+  File "/usr/local/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 171, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/app/apps/record/signals.py", line 23, in create_user_resume
+    Role.objects.create(employee=instance)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 455, in create
+    obj = self.model(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/base.py", line 502, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/fields/related_descriptors.py", line 545, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use employee.set() instead.
+2022-06-27 19:59:27,337 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 19:59:28,630 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:59:29,880 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 19:59:31,158 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 19:59:45,203 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 19:59:46,387 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:00:20,025 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 20:00:21,264 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:00:23,555 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 20:00:24,811 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:00:30,223 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 20:00:31,439 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:00:32,890 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 20:00:34,066 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:00:35,519 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-27 20:00:36,857 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:03:40,472 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:03:41,735 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:03:44,041 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:03:45,236 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:03:52,737 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:03:53,920 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:16,833 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:18,094 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:25,592 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:26,823 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:28,057 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:29,305 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:31,602 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:32,779 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:47,800 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:49,076 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:51,362 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:52,582 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:56,145 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:04:57,397 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:04:59,903 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:05:01,188 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:05:02,621 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:05:03,757 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:05:14,507 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:05:15,772 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:05:18,298 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:05:19,523 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:05:20,983 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:05:22,143 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:05:34,999 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:05:36,339 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:06:01,184 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:06:02,371 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:06:22,661 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:06:23,856 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:06:34,800 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:06:36,161 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:06:38,195 django.request ERROR    Internal Server Error: /api/resume/5cf55866-cf6c-4d7c-aefa-3a624623f0d3/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/app/apps/record/api/serializers.py", line 39, in to_representation
+    del representation["__all__"]
+KeyError: '__all__'
+2022-06-27 20:06:47,108 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:06:48,357 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:06:50,948 django.request ERROR    Internal Server Error: /api/resume/5cf55866-cf6c-4d7c-aefa-3a624623f0d3/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/app/apps/record/api/serializers.py", line 40, in to_representation
+    return representation
+UnboundLocalError: local variable 'representation' referenced before assignment
+2022-06-27 20:07:15,018 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:07:16,376 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:07:24,900 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:07:26,267 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:08:27,062 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:08:28,333 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:12:01,368 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:12:02,648 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:12:09,311 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:12:10,540 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:12:13,035 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:12:14,237 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:12:42,726 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:12:44,227 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:13:05,580 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:13:06,991 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:13:09,497 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:13:10,763 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:14:13,683 django.utils.autoreload INFO     /app/apps/record/api/serializers.py changed, reloading.
+2022-06-27 20:14:15,033 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:31:27,596 django.request WARNING  Not Found: /api/resume/5cf55866-cf6c-4d7c-aefa-3a624623f0d3/update
+2022-06-27 20:31:43,160 django.request WARNING  Not Found: /api/resume/5cf55866-cf6c-4d7c-aefa-3a624623f0d3/detail
+2022-06-27 20:33:22,447 django.utils.autoreload INFO     /app/apps/common/serializer.py changed, reloading.
+2022-06-27 20:33:24,073 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:38:43,243 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:38:44,544 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:38:45,788 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:38:47,009 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:38:55,728 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:38:56,953 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:39:03,622 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:39:04,822 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:39:06,233 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:39:07,455 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:39:08,912 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:39:10,086 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:39:50,916 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:39:52,135 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:39:56,723 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:39:57,968 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:40:16,044 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:40:17,270 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:40:27,888 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update
+2022-06-27 20:40:47,970 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:40:49,336 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:41:14,684 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:41:16,026 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:41:17,258 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:41:18,496 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:41:46,759 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:41:47,984 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:41:53,581 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 20:41:54,884 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 20:42:04,119 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:10:50,115 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:10:51,442 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:10:56,054 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:10:57,346 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:10:59,879 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:01,127 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:02,596 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:03,917 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:08,280 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:09,431 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:16,902 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:18,204 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:24,678 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:25,880 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:28,200 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:29,444 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:31,728 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:32,982 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:34,189 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:35,405 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:50,126 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:51,322 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:11:53,795 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:11:55,078 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:12:01,327 django.request ERROR    Internal Server Error: /api/employee/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/app/apps/sys_admin/api/views.py", line 30, in get_queryset
+    self.queryset = Employee.objects.filter(title__icontains=query)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 974, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 992, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 999, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1375, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1396, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1271, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1099, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1522, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'title' into field. Choices are: create_at, departments, education, email, employee_department, employee_report, employee_role, employee_salary, employee_team, experience, first_name, groups, id, identifier, is_active, is_staff, is_superuser, last_login, last_name, last_name_second, logentry, middle_name, password, reports, resume, roles, salary, socialsecurity, status, teams, update_at, user_permissions, username, vacation
+2022-06-27 23:12:43,655 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:12:44,841 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:13:17,080 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:13:18,399 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:13:25,011 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:13:26,250 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:16:07,921 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:16:09,140 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:19:15,187 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:19:16,544 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:19:18,040 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:19:19,278 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:20:01,355 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update
+2022-06-27 23:20:18,537 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:20:34,208 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:21:05,463 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:21:06,705 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:21:56,805 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:21:57,963 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:21:59,220 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:22:00,415 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:22:17,483 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:22:18,881 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:22:22,012 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:22:39,170 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:22:40,530 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:22:43,053 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:22:51,574 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:22:52,822 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:22:54,983 django.request ERROR    Internal Server Error: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+2022-06-27 23:23:07,920 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:23:09,260 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:23:11,625 django.request ERROR    Internal Server Error: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'django.db.models.query.QuerySet'>`
+2022-06-27 23:23:35,791 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:23:36,981 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:23:40,526 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:23:41,781 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:23:43,283 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:23:44,480 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:23:48,012 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:23:49,283 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:23:52,165 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:23:58,166 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:23:59,489 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:24:01,529 django.request ERROR    Internal Server Error: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/apps/sys_admin/api/views.py", line 55, in update_e
+    return Response(serializer.data)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/app/apps/sys_admin/api/serializers.py", line 88, in to_representation
+    representation = super().to_representation(instance)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 542, in to_representation
+    return [
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 543, in <listcomp>
+    self.child_relation.to_representation(value)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/relations.py", line 378, in to_representation
+    assert 'request' in self.context, (
+AssertionError: `HyperlinkedRelatedField` requires the request in the serializer context. Add `context={'request': request}` when instantiating the serializer.
+2022-06-27 23:24:18,793 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:24:20,111 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:24:21,276 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:24:31,145 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:24:32,627 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:25:09,929 django.request WARNING  Method Not Allowed: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update_e/
+2022-06-27 23:25:20,613 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update
+2022-06-27 23:25:26,357 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:25:27,617 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:26:28,494 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:28:18,582 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:28:20,350 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:32:03,521 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:32:05,012 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:32:16,653 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:32:18,252 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:32:28,081 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:32:29,574 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:32:31,114 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:32:32,763 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:42:01,439 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:42:02,744 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:42:06,070 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:42:07,307 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:42:09,587 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:42:10,811 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:42:17,275 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:42:18,461 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:42:24,135 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:42:25,314 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:42:56,467 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:42:57,706 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:43:00,221 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:43:01,531 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:43:08,898 django.request WARNING  Bad Request: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/
+2022-06-27 23:43:30,642 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:43:31,997 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:43:42,913 django.request WARNING  Bad Request: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/
+2022-06-27 23:44:09,205 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:44:10,443 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:44:34,915 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:44:36,244 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:44:45,999 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:44:47,281 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:44:50,812 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:44:52,028 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:10,897 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:12,156 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:14,695 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:15,889 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:25,665 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:26,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:30,456 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:31,761 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:35,084 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:36,402 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:37,919 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:39,163 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:51,034 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:52,277 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:45:55,633 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:45:56,900 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:46:00,469 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:46:01,680 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:46:42,178 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/update
+2022-06-27 23:47:18,123 django.utils.autoreload INFO     /app/apps/sys_admin/api/views.py changed, reloading.
+2022-06-27 23:47:19,479 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:52:48,136 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:52:49,667 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:52:51,980 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/
+2022-06-27 23:53:17,210 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:53:18,620 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-27 23:53:19,166 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/
+2022-06-27 23:53:20,776 django.request WARNING  Not Found: /api/employee/cc2ee8e2-5126-4944-9fba-f72c96b5a4ad/
+2022-06-27 23:53:33,439 django.request WARNING  Not Found: /api/employee/
+2022-06-27 23:53:39,296 django.request WARNING  Not Found: /api/employee/
+2022-06-27 23:53:42,656 django.request WARNING  Not Found: /api/employee/
+2022-06-27 23:53:52,578 django.utils.autoreload INFO     /app/api/urls.py changed, reloading.
+2022-06-27 23:53:54,016 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:01:17,391 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:01:18,671 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:01:21,178 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:01:22,423 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:02:09,925 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:02:11,159 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:02:14,712 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:02:16,062 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:02:47,903 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:02:49,152 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:02:52,699 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:02:53,933 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:02:55,394 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:02:56,714 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:05:34,294 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:05:35,717 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:05:44,559 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:05:45,739 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:05:54,273 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:05:55,422 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:06:00,785 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:06:01,977 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:06:07,357 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:06:08,547 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:06:14,981 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:06:16,219 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:06:21,701 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:06:22,908 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:06:38,018 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:06:39,436 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:08:44,767 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:08:46,029 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:08:48,286 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:08:49,636 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:08:55,036 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:08:56,197 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:09:01,606 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:09:02,958 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:09:33,830 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:09:35,288 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:09:44,089 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:09:45,532 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:09:55,623 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:09:57,123 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:10:09,118 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:10:10,571 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-28 00:10:24,602 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
+2022-06-28 00:10:26,060 django.utils.autoreload INFO     Watching for file changes with StatReloader

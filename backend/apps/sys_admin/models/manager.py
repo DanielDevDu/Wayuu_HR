@@ -127,26 +127,3 @@ class EmployeeManager(BaseUserManager):
     def get_queryset(self):
         return CustomQuerySet(self.model, using=self._db)"""
 
-
-class BaseModel(models.Model):
-    """
-    ----------------------------------
-    Create Table in Postgres Database
-    ----------------------------------
-    """
-
-    use_for_related_fields = True
-    
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    create_at = models.DateTimeField(default=timezone.now, editable=False)
-    update_at = models.DateTimeField(default=timezone.now, editable=False)
-    status = models.BooleanField(default=True)
-
-    class Meta:
-        abstract = True
-    
-    objects = EmployeeManager()
-    
-    def delete(self):
-        self.status = False
-        self.save()

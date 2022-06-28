@@ -16,7 +16,19 @@ black==21.6b0
 isort==5.9.3
 djoser==2.1.0
 djangorestframework-simplejwt==4.8.0
+PyJWT==2.1.0
 
+# pytest-django==4.4.0
+# pytest-factoryboy==2.1.0
+# Faker==8.9.1
+# pytest-cov==2.12.1
+# redis==3.5.3
+# celery==4.4.7
+# flower==0.9.7
+# django-celery-email==3.0.0
+# argh==0.26.2
+# PyYAML==5.3.1
+# watchdog==1.0.2
 # sqlparse==0.4.2
 # zope.event==4.5.0
 # zope.interface==5.4.0

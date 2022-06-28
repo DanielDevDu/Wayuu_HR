@@ -15,8 +15,9 @@ from django.utils import timezone
 import uuid
 import pghistory
 import pgtrigger
-from apps.sys_admin.models.base_model import BaseModel, EmployeeManager
+from apps.sys_admin.models.manager import EmployeeManager
 from django.utils.translation import gettext_lazy as _
+from apps.common.base_model import BaseModel
 
 class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
     """
