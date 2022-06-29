@@ -19,6 +19,8 @@ services:
     container_name: backend
     ports:
       - 8000:8000
+    # expose:
+    #   - "8000"
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -43,6 +45,6 @@ services:
   #   build: ./nginx_backend_server
   #   container_name: nginx
   #   ports:
-  #       - 8000:8000
+  #       - 8000:80
   #   depends_on:
   #       - backend

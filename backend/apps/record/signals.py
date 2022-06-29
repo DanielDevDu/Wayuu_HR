@@ -20,7 +20,7 @@ def create_user_resume(sender, instance, created, **kwargs):
     """
     if created:
         Resume.objects.create(employee=instance)
-        Role.objects.create(employee=instance)
+        # Role.objects.create(employee=instance)
 
 
 @receiver(post_save, sender=AUTH_USER_MODEL)

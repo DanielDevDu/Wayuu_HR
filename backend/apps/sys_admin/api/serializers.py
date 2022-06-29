@@ -16,13 +16,20 @@ class ResumeSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class EmployeeSerializer(BaseSerializer):
+class EmployeeReadSerializer(BaseSerializer):
+    """
+    --------------------------------------------
+    Serialize Employee Model with all fields
+    This work for Read Methods of request
+    List and Detail 
+    --------------------------------------------
+    """
 
-    # Add field with relationship with other tables
-    #lookup_field = 'employee'
 
-    #Custom
+    # Custom Fields 
     full_name = serializers.SerializerMethodField()
+
+    # Serialize relationships
 
     # Management
     roles = serializers.HyperlinkedRelatedField(
@@ -48,14 +55,14 @@ class EmployeeSerializer(BaseSerializer):
     )
 
     # Record
-    #resume = serializers.SerializerMethodField()
-    #resume = serializers.StringRelatedField()
-    #resume = ResumeSerializer(read_only=True)
-    """resume = serializers.HyperlinkedRelatedField(
+    # resume = serializers.SerializerMethodField()
+    # resume = serializers.StringRelatedField()
+    # resume = ResumeSerializer(read_only=True)
+    resume = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="resume-detail"
         #context={'request': resumes}
-    )"""
+    )
     # resume = ResumeSerializer()
     education = serializers.HyperlinkedIdentityField(
         view_name="education-detail",
@@ -91,27 +98,35 @@ class EmployeeSerializer(BaseSerializer):
         # depth=2
 
     def get_full_name(self, obj):
+        """
+        -----------------------------------------
+        Custom methos to add fiel in the response
+        -----------------------------------------
+        """
         return f'{obj.first_name} {obj.last_name}'
 
     def to_representation(self, instance):
+        """
+        --------------------------------------
+        Method manage the json representation
+        fields in the api
+        -------------------------------------
+        """
         representation = super().to_representation(instance)
-        del representation["password"]
+        del representation["password"] # Don't show the password
         return representation
     
-    """def get_resume(self, obj):
-        other = Resume.objects.filter(employee=obj.id).first()
-        request = self.context.get('request')
-        url = ""
-        if other:
-            url = reverse("resume-detail", (other.id, ), request=request)
-            print(type(url))
-        return url"""
 
-    """def get_department(self, obj):
-        other = Department.objects.filter(employee=obj.id).first()
-        request = self.context.get('request')
-        url = ""
-        if other:
-            url = reverse("department-detail", (other.id, ), request=request)
-        return url"""
-        
+class EmployeeWriteSerializer(BaseSerializer):
+    """
+    ---------------------------------------
+    Class to serializer only update method
+    ---------------------------------------
+    """
+    class Meta:
+        model = Employee
+        # What fields are allowed to update? and for who?
+        fields = [
+            "first_name",
+            "last_name",
+            "email"]

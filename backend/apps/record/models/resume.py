@@ -55,4 +55,4 @@ class Resume(BaseModel):
     )
 
     def __str__(self) -> str:
-        return "{}'s employee".format(self.employee.get_full_name)
+        return "{}'s resume".format(self.employee.get_full_name)

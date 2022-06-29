@@ -40,5 +40,25 @@ class BaseModel(models.Model):
     objects = EmployeeManager()
     
     def delete(self):
+        """
+        ---------------------------------------------
+        Custom delete method for all models:
+        Don't delete anything from database,
+        instead change status field to False so:
+        Status = False (Data will not show)
+        Status = True (Data is in use and will be show)
+        ---------------------------------------------
+        """
         self.status = False
         self.save()
+    
+    def save(self, *args, **kwargs):
+        """
+        -----------------------------
+        Custom Save method to update
+        update_at field for all models
+        each time that is change
+        -----------------------------
+        """
+        self.update_at = timezone.now().isoformat()
+        super().save(*args, **kwargs)
