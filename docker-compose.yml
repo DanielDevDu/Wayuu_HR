@@ -1,8 +1,9 @@
 version: "3"
 services:
 
-  database:
-    image: postgres:12.7-alpine
+  db:
+    image: postgres:14
+    container_name: db
     volumes:
         - ./backup_data/db:/var/lib/postgresql/data
     environment:
@@ -15,23 +16,35 @@ services:
   backend:
     restart: always
     build: ./backend
+    container_name: backend
+    ports:
+      - 8000:8000
+    # expose:
+    #   - "8000"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - ./backend:/app
     depends_on:
-      - database
+      - db
   
-  frontend:
-    build: ./frontend
-    volumes:
-      - ./frontend:/app
-    depends_on:
-      - backend
-    ports:
-      - 80:80
+  # frontend:
+  #   build: 
+  #     context: ./frontend
+  #   container_name: frontend
+  #   restart: on-failure
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - 3000:3000
   
-  nginx_backend_server:
-    build: ./nginx_backend_server
-    ports:
-        - 8000:8000
-    depends_on:
-        - backend
+  # nginx_backend_server:
+  #   build: ./nginx_backend_server
+  #   container_name: nginx
+  #   ports:
+  #       - 8000:80
+  #   depends_on:
+  #       - backend
