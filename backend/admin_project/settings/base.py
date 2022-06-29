@@ -59,14 +59,11 @@ INSTALLED_APPS = [
 
     #third apps
     'rest_framework',
+    "djoser",
     "rest_framework_simplejwt",
+    'rest_framework.authtoken',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-}
 
 
 MIDDLEWARE = [
@@ -162,6 +159,38 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'sys_admin.Employee'
 
 # Login
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+
+
+"""DJOSER = {
+    "LOGIN_FIELD": "email",
+    "USER_CREATE_PASSWORD_RETYPE": True,
+    "USERNAME_CHANGED_EMAIL_CONFIRMATION": True,
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+    "SEND_CONFIRMATION_EMAIL": True,
+    #"PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}",
+    "SET_PASSWORD_RETYPE": True,
+    "PASSWORD_RESET_CONFIRM_RETYPE": True,
+    #"USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
+    "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}",
+    #"ACTIVATION_URL": "activate/{uid}/{token}",
+    "ACTIVATION_URL": "activate/{uid}",
+    "SEND_ACTIVATION_EMAIL": True,
+    "SERIALIZERS": {
+        "user_create": "apps.sys_admin.api.serializers.EmployeeWriteSerializer,",
+        #"user": "apps.sys_admin.api.serializers.EmployeeReadSerializer",
+        #"current_user": "apps.sys_admin.api.serializers.EmployeeReadSerializer",
+        #"user_delete": "djoser.serializers.UserDeleteSerializer",
+    },
+}"""
+
 
 import logging
 import logging.config

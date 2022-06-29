@@ -1,61 +1,23 @@
-from ast import Return
-from multiprocessing import Condition, context
 from apps.sys_admin.models.employee import Employee
 from apps.management.models.role import Employee_Role
 from apps.sys_admin.models import Employee
-from rest_framework import viewsets, permissions
-from apps.sys_admin.api.serializers import EmployeeReadSerializer, EmployeeWriteSerializer
-from django.http import JsonResponse
+from rest_framework import viewsets
+from apps.sys_admin.api.serializers import *
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework import generics
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from apps.record.models import *
-from apps.record.api.serializers import ResumeSerializer
-# Lead Viewset
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-from rest_framework.authtoken.views import ObtainAuthToken
-
-class IsOwnerOrSuperUser(permissions.BasePermission):
-    """
-    ---------------------------------------------------
-    Conly self employees, staff and superuser can 
-    update and delete the data of the employee
-    Only authenticated can view data
-    The staff can't update data
-    ---------------------------------------------------
-    """
-    edit_methods = ("PUT", "PATCH")
-    # SAFE_METHODS = ('GET', 'HEAD', 'OPTIONS')
-
-    def has_permission(self, request, view):
-        if request.user.is_authenticated:
-            return True
-
-    def has_object_permission(self, request, view, obj):
-        # Read permissions are allowed to any request,
-        # so we'll always allow GET, HEAD or OPTIONS requests.
-        if request.user.is_superuser:
-            return True
-
-        if request.user.is_staff and request.method not in self.edit_methods:
-            return True
-
-        if obj == request.user and request.method in permissions.SAFE_METHODS:
-            return True
-
-        """if request.method in permissions.SAFE_METHODS:
-            return False"""
-
-        return False
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password
+from django.utils.translation import gettext_lazy as _
+from apps.sys_admin.exceptions import ErrorLogin, ErrorPassword
+from apps.sys_admin.permissions import IsOwnerOrSuperUser
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
 #class EmployeeViewSet(generics.ListAPIView):
     permission_classes = [
-         IsOwnerOrSuperUser
+         IsOwnerOrSuperUser,
     ]
     action_serializer_classes = {
       "create": EmployeeReadSerializer,
@@ -70,17 +32,18 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     employees = Employee.objects.all()
     queryset = employees
 
-    """@action(detail=True, methods=["GET"], url_path='roles')
-    def roles(self, request, pk=None):
-        employee = self.get_object()
-        roles = employee.roles.all()
-        return Response([role.name for role in roles])"""
-
     @action(detail=False, methods=["GET"], url_path='active')
     def empleyee_active(self, request):
         data = self.queryset.filter(status=True)
         serializer_context = {'request': request}
-        serializer = EmployeeWriteSerializer(data, many=True, context=serializer_context)
+        serializer = EmployeeReadSerializer(data, many=True, context=serializer_context)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=["GET"], url_path='inactive')
+    def empleyee_inactive(self, request):
+        data = self.queryset.filter(status=False)
+        serializer_context = {'request': request}
+        serializer = EmployeeReadSerializer(data, many=True, context=serializer_context)
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
@@ -95,16 +58,79 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         return super().update(request, *args, **kwargs)
     
-    """def pre_save(self, obj):
-        obj.employee = self.request.user"""
+    @action(detail=False, methods=["POST"], url_path='update_password')
+    def empleyee_update_password(self, request):
+        data = self.queryset.filter(status=True)
+        serializer_context = {'request': request}
+        serializer = EmployeeReadSerializer(data, many=True, context=serializer_context)
+        return Response(serializer.data)
+    
 
 class LoginViewSet(viewsets.ViewSet):
-    """Checks email and password and returns an auth token."""
+    """
+    ----------------
+    Login employee.
+    ----------------
+    """
 
-    serializer_class = AuthTokenSerializer
+    serializer_class = EmployeeLoginSerializer
     queryset = []
-    print("Yeaaaaahh")
+
     def create(self, request):
-        """Use the ObtainAuthToken APIView to validate and create a token."""
-        print(ObtainAuthToken())
-        return Response(request.data)
+        """
+        -------------------------------
+        Use the ObtainAuthToken APIView 
+        to validate and create a token.
+        -------------------------------
+        """
+
+        # Get request data
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        # obtain employee object
+        try:
+            employee = Employee.objects.get(email=email)
+        except Employee.DoesNotExist:
+            raise ErrorLogin
+
+        # check password
+        pwd_valid = check_password(password, employee.password)
+        if not pwd_valid or pwd_valid is None:
+            raise ErrorPassword
+
+        # Check authenticate employee
+        employee = authenticate(request, username=email, password=password)
+        if employee is not None:
+            # Login employee
+            login(request, employee)
+            return Response({'detail': "Login success"}, 200)
+        return ErrorLogin
+
+        # optional ? return employee's data serialized
+        serializer_context = {'request': request}
+        serializer = EmployeeReadSerializer([employee], many=True, context=serializer_context)
+
+        
+
+class LogoutViewSet(viewsets.ViewSet):
+    """
+    ----------------
+    Logout employee.
+    ----------------
+    """
+
+    serializer_class = None
+    queryset = []
+
+    def create(self, request):
+        """
+        -------------------------------
+        Use Logout method to logout
+        -------------------------------
+        """
+
+        logout(request)
+
+        return Response({'detail': "Logout success"}, 200)
+        

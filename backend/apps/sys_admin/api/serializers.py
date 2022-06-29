@@ -129,4 +129,17 @@ class EmployeeWriteSerializer(BaseSerializer):
         fields = [
             "first_name",
             "last_name",
-            "email"]
+            "password"]
+        
+class EmployeeLoginSerializer(BaseSerializer):
+    """
+    ---------------------------------------
+    Class to serializer only update method
+    ---------------------------------------
+    """
+    class Meta:
+        model = Employee
+        # What fields are allowed to update? and for who?
+        fields = [
+            "email",
+            "password"]

@@ -14,7 +14,8 @@ router = DefaultRouter()
 # Sys Admin
 #employee_list = EmployeeViewSet.as_view({'get': 'list'})
 router.register('employee', EmployeeViewSet, basename='employee')
-#router.register('login', LoginViewSet, basename='login')
+router.register('login', LoginViewSet, basename='login')
+router.register('logout', LogoutViewSet, basename='logout')
 #router.register('auth', urls.urlpatterns , basename='auth')
 employee_detail = EmployeeViewSet.as_view({
     'get': 'employee_active'
@@ -37,7 +38,6 @@ router.register('vacation', VacationViewSet, 'vacation')
 router.register('socialsecurity', SocialSecurityViewSet, 'socialsecurity')
 
 urls= format_suffix_patterns([
-    #path('', include('rest_framework.urls', namespace='rest_framework'))
     #path('auth/', include('django.contrib.auth.urls')),
 
     #path("employees/", EmployeeViewSet.as_view(), name="employees")
