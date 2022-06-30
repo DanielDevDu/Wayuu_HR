@@ -3,11 +3,13 @@ from apps.record.models.education import Education
 from apps.record.models.resume import Resume
 from apps.sys_admin.models.employee import Employee
 from apps.management.models.department import Department
+from apps.management.models import Department
 from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.reverse import reverse
 from apps.common.serializer import BaseSerializer
 from apps.record.api.serializers import ResumeSerializer
+from apps.management.api.serializers import DepartmentSerializer, RoleSerializer
 
 resumes = Resume.objects.all()
 class ResumeSerializer(serializers.HyperlinkedModelSerializer):
@@ -32,17 +34,18 @@ class EmployeeReadSerializer(BaseSerializer):
     # Serialize relationships
 
     # Management
-    roles = serializers.HyperlinkedRelatedField(
-        read_only=True,
-        view_name="role-detail",
-        many=True
-    )
-    departments = serializers.HyperlinkedRelatedField(
-        read_only=True,
-        view_name="department-detail",
-        many=True
-    )
-    """department = serializers.SerializerMethodField()"""
+    # roles = serializers.HyperlinkedRelatedField(
+    #     read_only=True,
+    #     view_name="role-detail",
+    #     many=True
+    # )
+    roles = RoleSerializer(many=True)
+    # departments = serializers.HyperlinkedRelatedField(
+    #     read_only=True,
+    #     view_name="department-detail",
+    #     many=True
+    # )
+    departments = DepartmentSerializer(many=True)
     teams = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="team-detail",
@@ -63,7 +66,7 @@ class EmployeeReadSerializer(BaseSerializer):
         view_name="resume-detail"
         #context={'request': resumes}
     )
-    # resume = ResumeSerializer()
+    # resume = ResumeSerializer(many=True)
     education = serializers.HyperlinkedIdentityField(
         view_name="education-detail",
         read_only=True,
@@ -96,6 +99,7 @@ class EmployeeReadSerializer(BaseSerializer):
         model = Employee
         fields = '__all__' # Add all fields
         # depth=2
+        #lookup_field = "indetifier"
 
     def get_full_name(self, obj):
         """
@@ -115,6 +119,9 @@ class EmployeeReadSerializer(BaseSerializer):
         representation = super().to_representation(instance)
         del representation["password"] # Don't show the password
         return representation
+    
+    #def get_departments(self, obj):
+
     
 
 class EmployeeWriteSerializer(BaseSerializer):

@@ -16,6 +16,7 @@ from apps.sys_admin.permissions import IsOwnerOrSuperUser
 
 class EmployeeViewSet(viewsets.ModelViewSet):
 #class EmployeeViewSet(generics.ListAPIView):
+    #lookup_field = "indetifier"
     permission_classes = [
          IsOwnerOrSuperUser,
     ]
@@ -45,7 +46,16 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         serializer_context = {'request': request}
         serializer = EmployeeReadSerializer(data, many=True, context=serializer_context)
         return Response(serializer.data)
-    
+
+    @action(detail=False, methods=["GET"], url_path='<int:identifier>')
+    def retrieve_by_idetifier(self, request, identifier):
+        current_user_id = str(request.user.id)
+
+        queryset = Employee.objects.filter(identifier=identifier)
+        serializer_context = {'request': request}
+        serializer = EmployeeReadSerializer(queryset, many=True, context=serializer_context)
+        return Response(serializer.data[0])
+
     def retrieve(self, request, pk=None):
         current_user_id = str(request.user.id)
 

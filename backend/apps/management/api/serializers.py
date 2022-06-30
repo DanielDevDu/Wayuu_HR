@@ -9,7 +9,7 @@ class DepartmentSerializer(BaseSerializer):
         view_name="employee-detail",
         many=True
     )
-    roles = serializers.HyperlinkedRelatedField(
+    roles_by_department = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="role-detail",
         many=True

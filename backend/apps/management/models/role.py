@@ -32,7 +32,7 @@ class Role(BaseModel):
     default_salary = models.FloatField()
 
     employee = models.ManyToManyField(Employee, related_name="roles", through='Employee_Role')
-    department = models.ManyToManyField(Department, related_name="roles_by_deparment", through='Department_Role')
+    department = models.ManyToManyField(Department, related_name="roles_by_department", through='Department_Role')
 
     def __str__(self) -> str:
         return self.name
@@ -53,7 +53,8 @@ class Employee_Role(BaseModel):
     )
     end_date = models.DateTimeField(
         help_text="Date when employee end in role",
-        default=timezone.now
+        blank=True,
+        null=True
     )
 
     def __str__(self) -> str:
