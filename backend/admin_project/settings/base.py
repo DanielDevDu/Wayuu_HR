@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from django.utils.log import DEFAULT_LOGGING
+import logging.config
+import logging
 from pathlib import Path
 import os
 import pgconnection
@@ -32,12 +35,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-
 # Application definition
 SITE_ID = 1
 INSTALLED_APPS = [
 
-    #Django apps
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
 
-    #My apps
+    # My apps
     'apps.sys_admin',
     'apps.record',
     'apps.legal',
@@ -57,13 +59,13 @@ INSTALLED_APPS = [
     'api',
     'frontend',
 
-    #third apps
+    # third apps
     'rest_framework',
-    "djoser",
-    "rest_framework_simplejwt",
-    'rest_framework.authtoken',
+    'corsheaders',
+    # "djoser",
+    # "rest_framework_simplejwt",
+    # 'rest_framework.authtoken',
 ]
-
 
 
 MIDDLEWARE = [
@@ -74,6 +76,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
 ]
 
 ROOT_URLCONF = 'admin_project.urls'
@@ -160,12 +168,11 @@ AUTH_USER_MODEL = 'sys_admin.Employee'
 
 # Login
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-}
-
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+# }
 
 
 """DJOSER = {
@@ -191,11 +198,6 @@ REST_FRAMEWORK = {
     },
 }"""
 
-
-import logging
-import logging.config
-
-from django.utils.log import DEFAULT_LOGGING
 
 logger = logging.getLogger(__name__)
 

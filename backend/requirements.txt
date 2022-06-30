@@ -17,6 +17,7 @@ isort==5.9.3
 djoser==2.1.0
 djangorestframework-simplejwt==4.8.0
 PyJWT==2.1.0
+django-cors-headers==3.13.0
 
 # Frontend
 django-crispy-forms==1.14.0

@@ -15950,3 +15950,70 @@ apps.sys_admin.models.employee.Employee.DoesNotExist: Employee matching query do
 2022-06-29 18:30:13,411 django.utils.autoreload INFO     Watching for file changes with StatReloader
 2022-06-29 18:31:18,827 django.utils.autoreload INFO     /app/apps/sys_admin/api/serializers.py changed, reloading.
 2022-06-29 18:31:20,781 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 18:47:29,088 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 18:48:11,666 django.request ERROR    Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "sys_admin_employee" does not exist
+LINE 1: ..."is_active", "sys_admin_employee"."is_staff" FROM "sys_admin...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/app/frontend/views/index.py", line 8, in home
+    print(Employee.objects.all())
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 256, in __repr__
+    data = list(self[:REPR_OUTPUT_SIZE + 1])
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 262, in __len__
+    self._fetch_all()
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 1354, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.9/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "sys_admin_employee" does not exist
+LINE 1: ..."is_active", "sys_admin_employee"."is_staff" FROM "sys_admin...
+                                                             ^
+
+2022-06-29 18:48:12,019 django.request WARNING  Not Found: /favicon.ico
+2022-06-29 18:51:51,230 django.request WARNING  Unauthorized: /api/employee/
+2022-06-29 18:54:35,255 django.request WARNING  Method Not Allowed: /api/login/
+2022-06-29 18:54:48,540 django.request WARNING  Unauthorized: /api/login/
+2022-06-29 18:55:07,373 django.request WARNING  Unauthorized: /api/login/
+2022-06-29 19:00:21,739 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-29 19:00:23,038 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 19:02:27,373 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-29 19:02:28,551 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 20:00:31,057 django.request WARNING  Forbidden: /api/employee/
+2022-06-29 20:01:04,977 django.request WARNING  Forbidden: /api/employee/
+2022-06-29 20:01:04,981 django.request WARNING  Forbidden: /api/employee/
+2022-06-29 20:03:04,082 django.request WARNING  Forbidden: /api/employee/
+2022-06-29 20:03:04,092 django.request WARNING  Forbidden: /api/employee/
+2022-06-29 20:09:53,690 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-29 20:09:54,934 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 20:10:07,771 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-29 20:10:09,059 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 20:10:34,129 django.utils.autoreload INFO     /app/admin_project/settings/base.py changed, reloading.
+2022-06-29 20:10:35,331 django.utils.autoreload INFO     Watching for file changes with StatReloader
+2022-06-29 20:10:39,696 django.request WARNING  Forbidden: /api/employee/
+2022-06-29 20:10:39,701 django.request WARNING  Forbidden: /api/employee/
