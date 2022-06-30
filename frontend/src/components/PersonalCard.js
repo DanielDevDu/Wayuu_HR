@@ -1,22 +1,46 @@
 import React from 'react';
 
 export default function PersonalCard() {
-  const [employee, setEmployee] = React.useState({})
-
+  const [employeeCard, setEmployeeCard] = React.useState({
+    full_name: "",
+    roles: "",
+    email: "",
+  })
+  const [employeeInfo, setEmployeeInfo] = React.useState({})
 
   React.useEffect(function () {
     console.log("success")
-    fetch("http://localhost:8000/api/employee/7b2dbe4f-e51b-4e76-8f7b-3ccc86ce8306/", {
+    fetch("http://localhost:8000/api/employee/2141d567-272a-4a10-a35c-bc89679d4448/", {
       headers: {
         'Authorization': 'Basic ' + btoa("admin.test13@gmail.com:123456")
       }
     })
       .then(res => res.json())
-      .then(data => setEmployee(data))
+      .then(data => setEmployeeInfo(data))
   }, [])
 
+  function placeholder() {
+    setEmployeeCard(() => {
+      return (
+        {
+          full_name: employeeInfo.full_name,
+          roles: employeeInfo.roles,
+          email: employeeInfo.email,
+        }
+      )
+    })
+  }
+
+
   return (
-    <pre>{JSON.stringify(employee, null, 2)}</pre>
+    <fieldset>
+      <p>picture goes here</p>
+      <div>
+        <p>Employee name: {employeeInfo.full_name}</p>
+        <p>Role: {employeeInfo.role}</p>
+        <p>e-mail: {employeeInfo.email}</p>
+      </div>
+    </fieldset>
   )
 
 }
