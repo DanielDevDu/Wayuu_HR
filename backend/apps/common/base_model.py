@@ -32,12 +32,14 @@ class BaseModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     create_at = models.DateTimeField(default=timezone.now, editable=False)
     update_at = models.DateTimeField(default=timezone.now, editable=False)
-    status = models.BooleanField(default=True)
+    status = models.BooleanField(default=True, editable=False)
 
     class Meta:
         abstract = True
     
     objects = EmployeeManager()
+
+    # def update(self):
     
     def delete(self):
         """

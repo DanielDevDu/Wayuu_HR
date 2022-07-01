@@ -16,6 +16,7 @@ import uuid
 import pghistory
 from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
+from django.utils.translation import gettext_lazy as _
 
 class Team(BaseModel):
     """
@@ -42,10 +43,25 @@ class Employee_Team(BaseModel):
 
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(
-        help_text="Date when employee was assigned to the team",
+    start_date = models.DateTimeField(
+        help_text="Date when employee start in team",
         default=timezone.now
+    )
+    end_date = models.DateTimeField(
+        help_text="Date when employee end in team",
+        blank=True,
+        null=True
     )
 
     def __str__(self) -> str:
         return "{}-{}".format(self.employee.__str__(), self.team.__str__())
+
+    def delete(self):
+        self.end_date = timezone.now().isoformat()
+
+        super().delete()
+    
+    """class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['employee', 'team'], name=_('Dont repeat a team by employee'))
+            ]"""

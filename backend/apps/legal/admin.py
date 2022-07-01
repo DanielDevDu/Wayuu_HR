@@ -7,5 +7,4 @@ admin.site.register([
     Salary,
     Vacation,
     SocialSecurity,
-    Employee_Salary,
 ])

@@ -25,3 +25,5 @@ class Vacation(BaseModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="vacation")
     start_date = models.DateTimeField(help_text="Start of vacations")
     end_date = models.DateTimeField(help_text="End of vacations")
+
+    # Make method that return work days 

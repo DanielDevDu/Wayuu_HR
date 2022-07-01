@@ -62,7 +62,7 @@ class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
         return "{} {}".format(self.first_name, self.last_name)
     
     @property
-    def get_full_name(self):
+    def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
 
     

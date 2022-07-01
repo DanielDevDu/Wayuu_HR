@@ -2,14 +2,15 @@ from apps.management.models import report
 from apps.record.models.education import Education
 from apps.record.models.resume import Resume
 from apps.sys_admin.models.employee import Employee
-from apps.management.models.department import Department
+from apps.management.models.department import Department, Employee_Department
 from apps.management.models import Department
+from apps.management.models.role import Employee_Role
 from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.reverse import reverse
 from apps.common.serializer import BaseSerializer
 from apps.record.api.serializers import ResumeSerializer
-from apps.management.api.serializers import DepartmentSerializer, RoleSerializer
+from apps.management.api.serializers import *
 
 resumes = Resume.objects.all()
 class ResumeSerializer(serializers.HyperlinkedModelSerializer):
@@ -34,17 +35,7 @@ class EmployeeReadSerializer(BaseSerializer):
     # Serialize relationships
 
     # Management
-    # roles = serializers.HyperlinkedRelatedField(
-    #     read_only=True,
-    #     view_name="role-detail",
-    #     many=True
-    # )
     roles = RoleSerializer(many=True)
-    # departments = serializers.HyperlinkedRelatedField(
-    #     read_only=True,
-    #     view_name="department-detail",
-    #     many=True
-    # )
     departments = DepartmentSerializer(many=True)
     teams = serializers.HyperlinkedRelatedField(
         read_only=True,
@@ -58,15 +49,11 @@ class EmployeeReadSerializer(BaseSerializer):
     )
 
     # Record
-    # resume = serializers.SerializerMethodField()
-    # resume = serializers.StringRelatedField()
-    # resume = ResumeSerializer(read_only=True)
     resume = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="resume-detail"
         #context={'request': resumes}
     )
-    # resume = ResumeSerializer(many=True)
     education = serializers.HyperlinkedIdentityField(
         view_name="education-detail",
         read_only=True,
@@ -95,6 +82,10 @@ class EmployeeReadSerializer(BaseSerializer):
         many=True
     )
 
+    # Intermediate tables
+    employee_role = serializers.SerializerMethodField()
+    employee_department = serializers.SerializerMethodField()
+
     class Meta:
         model = Employee
         fields = '__all__' # Add all fields
@@ -120,8 +111,15 @@ class EmployeeReadSerializer(BaseSerializer):
         del representation["password"] # Don't show the password
         return representation
     
-    #def get_departments(self, obj):
+    def get_employee_role(self, obj):
+        role_by_employee = Employee_Role.objects.filter(employee=obj.id).all()
+        serializer = EmployeeRoleSerializer(role_by_employee, many=True)
+        return serializer.data
 
+    def get_employee_department(self, obj):
+        department_by_employee = Employee_Department.objects.filter(employee=obj.id).all()
+        serializer = EmployeeDepartmentSerializer(department_by_employee, many=True)
+        return serializer.data
     
 
 class EmployeeWriteSerializer(BaseSerializer):

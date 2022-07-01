@@ -32,6 +32,9 @@ router.register('role', RoleViewSet, 'role')
 router.register('report', ReportViewSet, 'report')
 router.register('team', TeamViewSet, 'team')
 
+router.register('employe_role', EmployeeRoleViewSet, 'employee_role')
+router.register('employe_department', EmployeeDepartmentViewSet, 'employee_department')
+
 # Legal
 router.register('salary', SalaryViewSet, 'salary')
 router.register('vacation', VacationViewSet, 'vacation')

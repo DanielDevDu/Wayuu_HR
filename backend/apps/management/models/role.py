@@ -8,15 +8,18 @@ Role Data Model
 
 from email.policy import default
 from secrets import choice
+from sqlite3 import Timestamp
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
+from apps.sys_admin.models import Employee
 import pghistory
 from apps.management.models.department import Department
 from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
 from django.utils.translation import gettext_lazy as _
+from django.db.models import FilteredRelation, Q
 
 
 class Role(BaseModel):
@@ -36,6 +39,7 @@ class Role(BaseModel):
 
     def __str__(self) -> str:
         return self.name
+    
 
 class Employee_Role(BaseModel):
     """
@@ -45,7 +49,7 @@ class Employee_Role(BaseModel):
     ----------------------------------
     """
 
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE) 
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     start_date = models.DateTimeField(
         help_text="Date when employee start in role",
@@ -60,6 +64,18 @@ class Employee_Role(BaseModel):
     def __str__(self) -> str:
         return "{}-{}".format(self.employee.__str__(), self.role.__str__())
 
+
+    def delete(self):
+        self.end_date = timezone.now().isoformat()
+
+        super().delete()
+    class Meta:
+        constraints = [
+            #models.UniqueConstraint(fields=['employee', 'role'], condition=Q(end_date=None), name=_('Dont repeat a role'))
+            #models.UniqueConstraint(fields=['status', 'employee'], condition=Q(status=True), name=_('unique_role_active'))
+        ]
+    
+
 class Department_Role(BaseModel):
     """
     ----------------------------------
@@ -68,12 +84,52 @@ class Department_Role(BaseModel):
     ----------------------------------
     """
 
-    deparment = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
-    start_date = models.DateTimeField(
+    timestamp = models.DateTimeField(
         help_text="Date when the role was created",
         default=timezone.now
     )
 
     def __str__(self) -> str:
-        return "Role {} in department {}".format(self.role.__str__(), self.deparment.__str__())
+        return "Role {} in department {}".format(self.role.__str__(), self.department.__str__())
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['department', 'role'], name=_('Dont repeat a role by deparment'))
+            ]
+    
+class Employee_Deparment_Role(BaseModel):
+    """
+    ----------------------------------
+    Many-to-Many relationship between
+    Employee, Department and Role tables
+    ----------------------------------
+    """
+
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    
+    start_date = models.DateTimeField(
+        help_text="Date when employee start in role",
+        default=timezone.now
+    )
+    end_date = models.DateTimeField(
+        help_text="Date when employee end in role",
+        blank=True,
+        null=True
+    )
+
+    def __str__(self) -> str:
+        return "{} with role {} in {}".format(
+            self.employee.__str__(),
+            self.role.__str__(),
+            self.department.__str__()
+        )
+
+
+    def delete(self):
+        self.end_date = timezone.now().isoformat()
+
+        super().delete()

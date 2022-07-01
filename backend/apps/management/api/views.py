@@ -33,3 +33,16 @@ class ReportViewSet(viewsets.ModelViewSet):
     serializer_class = ReportSerializer
     queryset = Report.objects.all()
     
+class EmployeeRoleViewSet(viewsets.ModelViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = EmployeeRoleSerializer
+    queryset = Employee_Role.objects.all()
+
+class EmployeeDepartmentViewSet(viewsets.ModelViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = EmployeeDepartmentSerializer
+    queryset = Employee_Department.objects.all()

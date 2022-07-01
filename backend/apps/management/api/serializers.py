@@ -42,3 +42,30 @@ class TeamSerializer(BaseSerializer):
     class Meta:
         model = Team
         fields = '__all__'
+    
+class EmployeeRoleSerializer(BaseSerializer):
+    role = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='name'
+    )
+    employee = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='full_name'
+    )
+    class Meta:
+        model = Employee_Role
+        fields = '__all__'
+
+class EmployeeDepartmentSerializer(BaseSerializer):
+    department = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='name'
+    )
+
+    employee = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='full_name'
+    )
+    class Meta:
+        model = Employee_Department
+        fields = '__all__'

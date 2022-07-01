@@ -7,7 +7,6 @@ class SalarySerializer(BaseSerializer):
     employee = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="employee-detail",
-        many=True
     )
     class Meta:
         model = Salary

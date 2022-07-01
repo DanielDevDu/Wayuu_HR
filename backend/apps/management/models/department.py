@@ -29,6 +29,10 @@ class Department(BaseModel):
 
     def __str__(self) -> str:
         return self.name
+    
+    class Meta:
+        unique_together = []
+    
 
 
 class Employee_Department(BaseModel):
@@ -47,8 +51,20 @@ class Employee_Department(BaseModel):
     )
     end_date = models.DateTimeField(
         help_text="Date when employee end in department",
-        default=timezone.now
+        blank=True,
+        null=True
     )
 
+    def delete(self):
+        self.end_date = timezone.now().isoformat()
+
+        super().delete()
+
     def __str__(self) -> str:
-        return "{}-{}".format(self.employee.__str__(), self.department.__str__())
+        return "{} in {} department".format(
+            self.employee.__str__(),
+            self.department.__str__()
+        )
+    
+    """class Meta:
+        unique_together = ["department", "employee"]"""
