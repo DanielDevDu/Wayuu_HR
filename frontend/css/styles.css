@@ -187,18 +187,18 @@ body {
     color: var(--first-color-alt);
 }
 
-/*========== ROLE ==========*/
+/*========== DEPARTMENT ==========*/
 .home-data ul li .text3{
-    margin-left: 83px;
+    margin-left: 22px;
 }
 
 .home-data ul li .text3:hover{
     color: var(--first-color-alt);
 }
 
-/*========== POSITION ==========*/
+/*========== ROLE ==========*/
 .home-data ul li .text4{
-    margin-left: 56px;
+    margin-left: 82px;
 }
 
 .home-data ul li .text4:hover{
