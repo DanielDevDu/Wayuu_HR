@@ -1,5 +1,7 @@
 import './App.css';
-import PersonalCard from './components/PersonalCard';
+import MidSection from './components/MidSection';
+import LeftSection from './components/LeftSection';
+import RightSection from './components/RightSection';
 
 const EMPLOYEE = "http://localhost:8000/api/employees/";
 
@@ -7,9 +9,13 @@ const EMPLOYEE = "http://localhost:8000/api/employees/";
 
 function App() {
   return (
-    <div className="App">
-      <PersonalCard />
-    </div>
+    <main className="App">
+      <div className="container">
+        <LeftSection />
+        <MidSection />
+        <RightSection />
+      </div>
+    </main>
   );
 }
 

@@ -1,18 +1,20 @@
 import React from 'react';
 
 export default function PersonalCard() {
+  const [employeeInfo, setEmployeeInfo] = React.useState({})
+
   const [employeeCard, setEmployeeCard] = React.useState({
     full_name: "",
     roles: "",
     email: "",
+    department: "",
   })
-  const [employeeInfo, setEmployeeInfo] = React.useState({})
 
   React.useEffect(function () {
     console.log("success")
-    fetch("http://localhost:8000/api/employee/2141d567-272a-4a10-a35c-bc89679d4448/", {
+    fetch("http://localhost:8000/api/employee/5db3017e-18ac-4c3a-a4a9-54d48046b656/", {
       headers: {
-        'Authorization': 'Basic ' + btoa("admin.test13@gmail.com:123456")
+        'Authorization': 'Basic ' + btoa("tester.staff23@gmail.com:Dcba654321")
       }
     })
       .then(res => res.json())
@@ -20,27 +22,42 @@ export default function PersonalCard() {
   }, [])
 
   function placeholder() {
-    setEmployeeCard(() => {
-      return (
-        {
-          full_name: employeeInfo.full_name,
-          roles: employeeInfo.roles,
-          email: employeeInfo.email,
-        }
-      )
-    })
+    setEmployeeCard(prevState => ({
+      ...prevState,
+      full_name: employeeInfo.full_name,
+      roles: employeeInfo.employee_role.map(role => role.status ? role.role : ''),
+      email: employeeInfo.email,
+      department: employeeInfo.employee_department.map(dept => dept.status ? dept.department : ''),
+    }))
   }
 
+  console.log(employeeCard)
 
   return (
-    <fieldset>
-      <p>picture goes here</p>
-      <div>
-        <p>Employee name: {employeeInfo.full_name}</p>
-        <p>Role: {employeeInfo.role}</p>
-        <p>e-mail: {employeeInfo.email}</p>
-      </div>
-    </fieldset>
+    <div className="home-data fade-in">
+      <button onClick={placeholder}>Render</button>
+      <ul>
+        <li>
+          <span className="icon"> <i className="uil uil-user-circle"></i></span>
+          <span className="text-tittle"> Name </span>
+          <span className="text1"> {employeeCard.full_name} </span>
+        </li>
+        <li>
+          <span className="icon"> <i className="uil uil-user-circle"></i></span>
+          <span className="text-tittle"> Email </span>
+          <span className="text2"> {employeeCard.email} </span>
+        </li>
+        <li>
+          <span className="icon"> <i className="uil uil-award-alt"></i></span>
+          <span className="text-tittle"> Department </span>
+          <span className="text3"> {employeeCard.department} </span>
+        </li>
+        <li>
+          <span class="icon"> <i class="uil uil-swatchbook"></i></span>
+          <span className="text-tittle"> Role </span>
+          <span className="text4"> {employeeCard.roles} </span>
+        </li>
+      </ul>
+    </div>
   )
-
 }
