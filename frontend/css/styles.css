@@ -13,6 +13,7 @@
     /* HSL color mode */
     --first-color: hsl(var(--hue-color), 30%, 61%);
     --first-color-second: hsl(var(--hue-color), 100%, 87%);
+    --first-color-3: hsl(var(--hue-color), 47%, 93%, 0.5);
     --first-color-alt: hsl(var(--hue-color), 47%, 75%);
     --first-color-lighter: hsl(var(--hue-color), 47%, 93%);
     --title-color: hsl(var(--hue-color), 8%, 15%);
@@ -137,73 +138,70 @@ body {
     width: 300px;
 }
 
-.home-data{
+.home-data {
     margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.home-data ul{
+.home-data ul {
     position: relative;
 }
 
-.home-data ul li{
+.home-data ul li {
     position: relative;
     list-style: none;
     margin: 10px 0;
     cursor: pointer;
 }
 
-.home-data ul li .icon{
+.home-data ul li .icon {
     display: inline-block;
     width: 15px;
     font-size: var(--normal-font-size);
     color: black;
-    margin-left: 60px;
+    margin-left: 50px;
 }
 
-.home-data ul li .text-tittle{
+.home-data ul li .text-tittle {
     color: black;
 }
 
-.home-data ul li span{
+.home-data ul li span {
     color: var(--first-color-second);
     font-weight: var(--font-medium);
 }
 
-/*========== NAME ==========*/
-.home-data ul li .text1{
-    margin-left: 70px;
-}
-
-.home-data ul li .text1:hover{
+.home-data-text2 span:hover {
     color: var(--first-color-alt);
 }
 
 /*========== EMAIL ==========*/
-.home-data ul li .text2{
+/* .home-data ul li .text2{
     margin-left: 74px;
 }
 
 .home-data ul li .text2:hover{
     color: var(--first-color-alt);
-}
+} */
 
-/*========== DEPARTMENT ==========*/
-.home-data ul li .text3{
-    margin-left: 22px;
+/*========== ROLE ==========*/
+/* .home-data ul li .text3{
+    margin-left: 83px;
 }
 
 .home-data ul li .text3:hover{
     color: var(--first-color-alt);
 }
-
-/*========== ROLE ==========*/
-.home-data ul li .text4{
-    margin-left: 82px;
+ */
+/*========== POSITION ==========*/
+/* .home-data ul li .text4{
+    margin-left: 56px;
 }
 
 .home-data ul li .text4:hover{
     color: var(--first-color-alt);
-}
+} */
 
 
 /*==================== RIGHT CONTAINER ====================*/
@@ -213,7 +211,41 @@ body {
     padding: 40px;
 }
 
+.teams-container {
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--first-color-3);
+    width: 700px;
+    height: 600px;
+    overflow: auto;
+    text-align: justify;
+    border-radius: 10px;
+}
 
+.team-tittle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 2px solid var(--first-color);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.team-tittle:hover {
+    box-shadow: 0 5px 55px var(--first-color);
+}
+
+.member {
+    border: 2px solid var(--first-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px 10px 10px;
+}
+
+.home__subtitle:hover {
+    color: var(--first-color);
+}
 
 /*==================== BUTTONS ====================*/
 button {
@@ -234,20 +266,6 @@ button {
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
-}
-
-.fade-in {
-    animation: fadeIn 4s;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 
 /* 1 */
@@ -286,4 +304,36 @@ button {
 .section__title,
 .section__subtitle {
     text-align: center;
+}
+
+.fade-in {
+    animation: fadeIn 4s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    ;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--first-color);
+    border-radius: 10px;
 }
