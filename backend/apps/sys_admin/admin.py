@@ -25,13 +25,10 @@ class EmployeeAdmin(BaseUserAdmin):
     ]
     list_display_links = ["email"]
     list_filter = [
-        "email",
-        "identifier",
         "first_name",
         "last_name",
         "is_staff",
         "is_active",
-        "username",
     ]
     fieldsets = (
         (
@@ -47,12 +44,11 @@ class EmployeeAdmin(BaseUserAdmin):
             _("Personal Information"),
             {
                 "fields": (
-                    "identifier",
                     "first_name",
                     "middle_name",
                     "last_name",
                     "last_name_second",
-                    "username",
+                    "identifier",
                 )
             },
         ),
@@ -76,12 +72,10 @@ class EmployeeAdmin(BaseUserAdmin):
             {
                 "classes": ("wide",),
                 "fields": (
-                    "email",
-                    "identifier",
                     "first_name",
                     "last_name",
-                    "username",
-                    "password1", "password2", "is_staff", "is_active",
+                    "identifier",
+                    "password1", "password2", "is_staff",
                     
                 ),
             },

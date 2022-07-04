@@ -1,26 +1,21 @@
-from apps.management.models import report
-from apps.record.models.education import Education
+"""
+--------------------------------
+Serializers class Employee Model
+--------------------------------
+"""
+
 from apps.record.models.resume import Resume
 from apps.sys_admin.models.employee import Employee
-from apps.management.models.department import Department, Employee_Department
-from apps.management.models import Department
+from apps.management.models.department import Employee_Department
 from apps.management.models.role import Employee_Role
 from rest_framework import serializers
-from rest_framework.request import Request
-from rest_framework.reverse import reverse
 from apps.common.serializer import BaseSerializer
-from apps.record.api.serializers import ResumeSerializer
 from apps.management.api.serializers import *
-
-resumes = Resume.objects.all()
-class ResumeSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Resume
-        fields = '__all__'
+from django.contrib.auth.password_validation import validate_password
 
 
 class EmployeeReadSerializer(BaseSerializer):
-    """
+    """ 
     --------------------------------------------
     Serialize Employee Model with all fields
     This work for Read Methods of request
@@ -28,15 +23,16 @@ class EmployeeReadSerializer(BaseSerializer):
     --------------------------------------------
     """
 
+    lookup_field = 'identifier'
 
     # Custom Fields 
     full_name = serializers.SerializerMethodField()
 
-    # Serialize relationships
+    ### Serialize relationships ###
 
     # Management
-    roles = RoleSerializer(many=True)
-    departments = DepartmentSerializer(many=True)
+    roles = RoleSerializer(many=True, read_only=True)
+    departments = DepartmentSerializer(many=True, read_only=True)
     teams = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="team-detail",
@@ -89,8 +85,6 @@ class EmployeeReadSerializer(BaseSerializer):
     class Meta:
         model = Employee
         fields = '__all__' # Add all fields
-        # depth=2
-        #lookup_field = "indetifier"
 
     def get_full_name(self, obj):
         """
@@ -122,7 +116,7 @@ class EmployeeReadSerializer(BaseSerializer):
         return serializer.data
     
 
-class EmployeeWriteSerializer(BaseSerializer):
+class EmployeeCreateSerializer(BaseSerializer):
     """
     ---------------------------------------
     Class to serializer only update method
@@ -134,7 +128,55 @@ class EmployeeWriteSerializer(BaseSerializer):
         fields = [
             "first_name",
             "last_name",
+            "identifier",
+            "email",
             "password"]
+        read_only_fields = ["email"]
+        
+    
+    # def create(self, validated_data):
+    #     """
+    #     -------------------------------
+    #     Custom post method to create
+    #     employees
+    #     -------------------------------
+    #     """
+    #     # Create employee
+    #     employee = Employee(**validated_data)
+    #     employee.set_password(validated_data['password'])
+    #     employee.save()
+    #     return employee
+
+    def to_representation(self, instance):
+        """
+        --------------------------------------
+        Method manage the json representation
+        fields in the api
+        -------------------------------------
+        """
+        representation = super().to_representation(instance)
+        del representation["password"] # Don't show the password
+        return representation
+class EmployeeUpdateSerializer(BaseSerializer):
+    """
+    ---------------------------------------
+    Class to serializer only update method
+    ---------------------------------------
+    """
+    class Meta:
+        model = Employee
+        # What fields are allowed to update? and for who?
+        exclude = [
+            "first_name",
+            "last_name",
+            "identifier",
+            "password",
+            "email",
+            "username",
+            "is_superuser",
+            "is_active",
+            "last_login"
+        ]
         
 class EmployeeLoginSerializer(BaseSerializer):
     """
@@ -148,3 +190,35 @@ class EmployeeLoginSerializer(BaseSerializer):
         fields = [
             "email",
             "password"]
+    
+    def to_representation(self, instance):
+        """
+        --------------------------------------
+        Method manage the json representation
+        fields in the api
+        -------------------------------------
+        """
+        representation = super().to_representation(instance)
+        del representation["password"] # Don't show the password
+        return representation
+
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    """
+    -----------------------------------------
+    Class to serializer only change password
+    -----------------------------------------
+    """
+    # lookup_field = 'identifier'
+
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True, required=True)
+    old_password = serializers.CharField(write_only=True, required=True)
+
+    class Meta:
+        model = Employee
+        fields = ('old_password', 'password', 'password2')
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+        return attrs

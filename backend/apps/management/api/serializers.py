@@ -4,11 +4,11 @@ from apps.common.serializer import BaseSerializer
 
 
 class DepartmentSerializer(BaseSerializer):
-    employee = serializers.HyperlinkedRelatedField(
-        read_only=True,
-        view_name="employee-detail",
-        many=True
-    )
+    # employee = serializers.HyperlinkedRelatedField(
+    #     read_only=True,
+    #     view_name="employee-detail",
+    #     many=True
+    # )
     roles_by_department = serializers.HyperlinkedRelatedField(
         read_only=True,
         view_name="role-detail",
@@ -19,9 +19,9 @@ class DepartmentSerializer(BaseSerializer):
         fields = '__all__'
 
 class RoleSerializer(BaseSerializer):
-    employee = serializers.HyperlinkedRelatedField(
+    employee = serializers.SlugRelatedField(
         read_only=True,
-        view_name="employee-detail",
+        slug_field='full_name',
         many=True
     )
     department = serializers.HyperlinkedRelatedField(
@@ -34,11 +34,19 @@ class RoleSerializer(BaseSerializer):
         fields = '__all__'
 
 class ReportSerializer(BaseSerializer):
+    employee = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='full_name'
+    )
     class Meta:
         model = Report
         fields = '__all__'
 
 class TeamSerializer(BaseSerializer):
+    employee = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='full_name'
+    )
     class Meta:
         model = Team
         fields = '__all__'

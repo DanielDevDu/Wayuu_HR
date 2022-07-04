@@ -1,20 +1,16 @@
 #!/usr/bin/python3
 
+
 """
 --------------------------
 Employee-user Data Model
 --------------------------
 """
 
-from email.policy import default
-from secrets import choice
+
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
-import uuid
-import pghistory
-import pgtrigger
 from apps.sys_admin.models.manager import EmployeeManager
 from django.utils.translation import gettext_lazy as _
 from apps.common.base_model import BaseModel
@@ -31,23 +27,14 @@ class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
     middle_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100)
     last_name_second = models.CharField(max_length=100, blank=True)
-    identifier = models.BigIntegerField()
+    identifier = models.BigIntegerField(unique=True)
     email = models.EmailField(max_length=254, unique=True, blank=True)
     username = models.CharField(max_length=100, unique=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    #is_admin = models.BooleanField(default=False)
-    #is_superuser = models.BooleanField(default=False)
-
-    #data_joined = models.DateTimeField(default=timezone.now)
-    #last_login = models.DateTimeField(verbose_name="date joined", auto_now=True, editable=False)
-
-    # Many to Many Relationships
-    #from management.models.department import Department
     
 
-    
     USERNAME_FIELD = "email" # Field to login
     REQUIRED_FIELDS = ["first_name", "last_name", "identifier", "username"] # Field needs to create
     
@@ -64,6 +51,15 @@ class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
     @property
     def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
+    
+    @property
+    def relation(self):
+        return {
+            "full_name": "{} {}".format(self.first_name, self.last_name),
+            "email": "{}".format(self.email),
+            "identifier": self.identifier,
+            "is_active": self.is_active
+        }
 
     
     def save(self, *args, **kwargs):
@@ -73,6 +69,7 @@ class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
         unique email and username for each employee
         ------------------------------------------
         """
+        print("......", self)
         count = Employee.objects.all().count()
         self.email = "{}.{}{}{}@gmail.com".format(
             self.first_name,
@@ -88,3 +85,39 @@ class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
     
     def has_module_perms(self, app_label):
         return True"""
+
+"""
+---------------------------------------
+Signal to Record tables
+---------------------------------------
+"""
+import logging
+
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
+from apps.record.models import Resume
+
+logger = logging.getLogger(__name__)
+# Employee and AUTH_USER_MODEL are equal
+
+@receiver(post_save, sender=Employee)
+def create_employee_resume(sender, instance, created, **kwargs):
+    """
+    -------------------------------
+    After save Employee in database
+    -------------------------------
+    """
+    
+    print("IN signal............")
+    if created:
+        print("... create resume ...")
+        Resume.objects.create(employee=instance)
+        instance.resume.save()
+        logger.info(f"{instance}'s employee created with email {instance.email} and identifier {instance.identifier}")
+        print(Resume.objects.all())
+
+
+# @receiver(post_save, sender=Employee)
+# def save_employee_resume(sender, instance, **kwargs):
+#     instance.resume.save()
+#     logger.info(f"{instance}'s employee created with email {instance.email} and identifier {instance.identifier}")

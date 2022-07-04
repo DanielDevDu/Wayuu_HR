@@ -6,19 +6,12 @@ Base Data Model
 --------------------------
 """
 
-from email.policy import default
-from secrets import choice
-from turtle import update
-from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-import uuid
-import pghistory
-from django.contrib.auth.models import BaseUserManager
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
+
 from django.utils.translation import gettext_lazy as _
 from apps.sys_admin.models.manager import EmployeeManager
+from django.utils import timezone
+from django.db import models
+import uuid
 
 class BaseModel(models.Model):
     """
@@ -39,7 +32,11 @@ class BaseModel(models.Model):
     
     objects = EmployeeManager()
 
-    # def update(self):
+
+    def update(self, *args, **kwargs):
+        print("Try to update...")
+        self.save()
+
     
     def delete(self):
         """
@@ -62,5 +59,6 @@ class BaseModel(models.Model):
         each time that is change
         -----------------------------
         """
+
         self.update_at = timezone.now().isoformat()
         super().save(*args, **kwargs)

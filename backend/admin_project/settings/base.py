@@ -18,6 +18,7 @@ import os
 import pgconnection
 import environ
 
+
 env = environ.Env(DEBUG=(bool, False))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -62,11 +63,14 @@ INSTALLED_APPS = [
     # third apps
     'rest_framework',
     'corsheaders',
+    'django_filters'
     # "djoser",
     # "rest_framework_simplejwt",
     # 'rest_framework.authtoken',
 ]
-
+# Smart selects
+JQUERY_URL = False
+USE_DJANGO_JQUERY = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -168,11 +172,9 @@ AUTH_USER_MODEL = 'sys_admin.Employee'
 
 # Login
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.TokenAuthentication',
-#     ],
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata'
+}
 
 
 """DJOSER = {

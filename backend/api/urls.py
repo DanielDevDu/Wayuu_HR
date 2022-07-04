@@ -1,5 +1,10 @@
+"""
+--------------------------------------
+Enpoints of the API with router with
+rest framework, urls.
+--------------------------------------
+"""
 
-from posixpath import basename
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from apps.sys_admin.api.views import *
@@ -10,40 +15,32 @@ from django.contrib.auth import urls
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
-router = DefaultRouter()
-# Sys Admin
-#employee_list = EmployeeViewSet.as_view({'get': 'list'})
+router = DefaultRouter(trailing_slash=True)
+#W## Sys Admin ###
 router.register('employee', EmployeeViewSet, basename='employee')
 router.register('login', LoginViewSet, basename='login')
 router.register('logout', LogoutViewSet, basename='logout')
-#router.register('auth', urls.urlpatterns , basename='auth')
-employee_detail = EmployeeViewSet.as_view({
-    'get': 'employee_active'
-})
 
-# Record
+### Record ###
 router.register('resume', ResumeViewSet, basename='resume')
 router.register('experience', ExperienceViewSet, basename='experience')
 router.register('education', EducationViewSet, basename='education')
 
-# Management
+### Management ###
 router.register('department', DepartmentViewSet, 'department')
 router.register('role', RoleViewSet, 'role')
 router.register('report', ReportViewSet, 'report')
 router.register('team', TeamViewSet, 'team')
 
+# Intermediate tables #
 router.register('employe_role', EmployeeRoleViewSet, 'employee_role')
 router.register('employe_department', EmployeeDepartmentViewSet, 'employee_department')
 
-# Legal
+### Legal ###
 router.register('salary', SalaryViewSet, 'salary')
 router.register('vacation', VacationViewSet, 'vacation')
 router.register('socialsecurity', SocialSecurityViewSet, 'socialsecurity')
 
-urls= format_suffix_patterns([
-    #path('auth/', include('django.contrib.auth.urls')),
-
-    #path("employees/", EmployeeViewSet.as_view(), name="employees")
-])
+urls= format_suffix_patterns([])
 
 urlpatterns = router.urls + urls

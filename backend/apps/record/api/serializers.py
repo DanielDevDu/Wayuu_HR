@@ -1,33 +1,68 @@
-from apps.record.models import *
+"""
+--------------------------------
+Serializers class Employee Model
+--------------------------------
+"""
+
+
+from apps.common.serializer import BaseSerializer
 from apps.sys_admin.models import Employee
 from rest_framework import serializers
-from rest_framework.reverse import reverse
-from django.urls import resolve
-from apps.common.serializer import BaseSerializer
+from apps.record.models import *
+
 
 class EducationSerializer(BaseSerializer):
-    employee = serializers.HyperlinkedRelatedField(
+    """ 
+    --------------------------------------------
+    Serialize Education Model with all fields
+    Methods: all
+    Enpoints: 
+        - api/education
+        - api/education/id_education
+    --------------------------------------------
+    """
+
+    employee = serializers.SlugRelatedField(
         read_only=True,
-        view_name="employee-detail"
+        slug_field='full_name'
     )
     class Meta:
         model = Education
         fields = '__all__'
 
 class ExperienceSerializer(BaseSerializer):
-    employee = serializers.HyperlinkedRelatedField(
+    """ 
+    --------------------------------------------
+    Serialize Experience Model with all fields
+    Methods: all
+    Enpoints: 
+        - api/experience
+        - api/experience/id_experience
+    --------------------------------------------
+    """
+
+    employee = serializers.SlugRelatedField(
         read_only=True,
-        view_name="employee-detail"
+        slug_field='full_name'
     )
     class Meta:
         model = Experience
         fields = '__all__'
 
 class ResumeSerializer(BaseSerializer):
-    #employee = serializers.SerializerMethodField()
-    employee = serializers.HyperlinkedRelatedField(
+    """ 
+    --------------------------------------------
+    Serialize Resume Model with all fields
+    Methods: GET, POST
+    Enpoints: 
+        - api/resume
+        - api/resume/id_resume
+    --------------------------------------------
+    """
+
+    employee = serializers.SlugRelatedField(
         read_only=True,
-        view_name="employee-detail"
+        slug_field='relation'
     )
     class Meta:
         model = Resume
@@ -38,21 +73,25 @@ class ResumeSerializer(BaseSerializer):
         if not instance.employee.is_staff:
             representation.clear()
         return representation
-
-    """def get_employee(self, obj):
-        request = self.context.get('request')
-        base_url =  "{0}://{1}{2}{3}".format(request.scheme, request.get_host(), request.path, obj.pk)
-        print(base_url)
-        return request.build_absolute_uri() + str(obj.id)"""
     
 class ResumeUpdateSerializer(BaseSerializer):
-    employee = serializers.HyperlinkedRelatedField(
+    """ 
+    --------------------------------------------
+    Serialize Resume Model with all fields
+    Methods: PUT
+    Enpoints: 
+        - api/resume
+        - api/resume/id_resume
+    --------------------------------------------
+    """
+    
+    employee = serializers.SlugRelatedField( 
         read_only=True,
-        view_name="employee-detail"
+        slug_field='relation'
     )
     class Meta:
         model = Resume
-        fields = ["City"]
+        fields = "__all__"
     
     def to_representation(self, instance):
         representation = super().to_representation(instance)

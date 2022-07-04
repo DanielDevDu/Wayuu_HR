@@ -6,21 +6,15 @@ Role Data Model
 --------------------------
 """
 
-from email.policy import default
-from secrets import choice
-from sqlite3 import Timestamp
+
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
-import uuid
 from apps.sys_admin.models import Employee
-import pghistory
 from apps.management.models.department import Department
 from apps.common.base_model import BaseModel
 from apps.sys_admin.models.employee import Employee
 from django.utils.translation import gettext_lazy as _
 from django.db.models import FilteredRelation, Q
-
 
 class Role(BaseModel):
     """
@@ -106,10 +100,12 @@ class Employee_Deparment_Role(BaseModel):
     Employee, Department and Role tables
     ----------------------------------
     """
-
+    
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    # roles = Role.objects.filter(department=department).all()
+    #role_by_deparment = models.CharField(choices=roles, max_length=100)
     
     start_date = models.DateTimeField(
         help_text="Date when employee start in role",
