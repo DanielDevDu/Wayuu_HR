@@ -45,7 +45,7 @@ class EmployeeReadSerializer(BaseSerializer):
     # )
 
     # Record
-    resume = serializers.HyperlinkedRelatedField(
+    resume = serializers.HyperlinkedRelatedField( 
         read_only=True,
         view_name="resume-detail"
         #context={'request': resumes}
@@ -112,7 +112,7 @@ class EmployeeReadSerializer(BaseSerializer):
 
     def get_employee_department(self, obj):
         department_by_employee = Employee_Department.objects.filter(employee=obj.id).all()
-        serializer = EmployeeDepartmentSerializer(department_by_employee, many=True)
+        serializer = EmployeeDepartmentReadSerializer(department_by_employee, many=True)
         return serializer.data 
     
 
@@ -142,7 +142,11 @@ class EmployeeCreateSerializer(BaseSerializer):
     #     -------------------------------
     #     """
     #     # Create employee
-    #     employee = Employee(**validated_data)
+    #     employee = Employee(
+    #         first_name=validated_data["first_name"],
+    #         last_name=validated_data["last_name"],
+    #         identifier=validated_data["identifier"]
+    #     )
     #     employee.set_password(validated_data['password'])
     #     employee.save()
     #     return employee

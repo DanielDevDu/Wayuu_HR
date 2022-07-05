@@ -44,5 +44,16 @@ class EmployeeDepartmentViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
-    serializer_class = EmployeeDepartmentSerializer   
+    action_serializer_classes = {
+      "create": EmployeeDepartmentCreateSerializer,
+      "update": EmployeeDepartmentUpdateSerializer,
+      "retrieve": EmployeeDepartmentReadSerializer,
+      "list": EmployeeDepartmentReadSerializer,
+      "partial_update": EmployeeDepartmentUpdateSerializer,
+     }
+    
+    def get_serializer_class(self):
+        # What serializer use?
+        return self.action_serializer_classes[self.action]
+ 
     queryset = Employee_Department.objects.all()
