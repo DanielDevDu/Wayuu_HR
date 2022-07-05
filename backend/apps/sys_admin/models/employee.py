@@ -78,10 +78,15 @@ class Employee(BaseModel, AbstractBaseUser, PermissionsMixin):
             str(self.identifier)[-1])
         
         self.username = self.email.split("@")[0]
+
         super().save(*args, **kwargs)
     
-    """def has_perm(self, perm, obj=None):
-        return self.is_admin
-    
-    def has_module_perms(self, app_label):
-        return True"""
+    def delete(self):
+        """
+        ---------------------------------------------
+        Delete Resume when EMployee is deleted
+        ---------------------------------------------
+        """
+        self.is_active = False
+        self.resume.status = False
+        super().delete()

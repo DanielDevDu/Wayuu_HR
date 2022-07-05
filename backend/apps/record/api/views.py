@@ -53,7 +53,7 @@ class ResumeViewSet(viewsets.ModelViewSet):
         - api/resume
         - api/resume/id_resume
     methods:
-        - all
+        - get, put, head, options
     -----------------------------------
     """
     permission_classes = [
@@ -71,4 +71,5 @@ class ResumeViewSet(viewsets.ModelViewSet):
         return self.action_serializer_classes[self.action]
 
     queryset = Resume.objects.all()
+    http_method_names = ['get', 'put', 'head', 'options']
     
