@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.db.models.signals import post_save, pre_save
 
 
 class RecordConfig(AppConfig):
@@ -7,5 +8,4 @@ class RecordConfig(AppConfig):
 
     def ready(self) -> None:
         # from apps.record import tracking
-        import apps.record.signals
-        
+        import apps.record.signals        

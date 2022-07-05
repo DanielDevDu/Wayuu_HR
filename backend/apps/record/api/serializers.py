@@ -68,11 +68,11 @@ class ResumeSerializer(BaseSerializer):
         model = Resume
         fields = '__all__'
     
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        if not instance.employee.is_staff:
-            representation.clear()
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     if not instance.employee.is_staff:
+    #         representation.clear()
+    #     return representation
     
 class ResumeUpdateSerializer(BaseSerializer):
     """ 
@@ -93,8 +93,8 @@ class ResumeUpdateSerializer(BaseSerializer):
         model = Resume
         fields = "__all__"
     
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        if not instance.employee.is_staff:
-            representation.clear()
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     if not instance.employee.is_staff:
+    #         representation.clear()
+    #     return representation

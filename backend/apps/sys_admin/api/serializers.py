@@ -130,7 +130,8 @@ class EmployeeCreateSerializer(BaseSerializer):
             "last_name",
             "identifier",
             "email",
-            "password"]
+            "password",
+            "is_staff"]
         read_only_fields = ["email"]
         
     

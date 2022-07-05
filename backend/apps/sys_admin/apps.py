@@ -7,4 +7,5 @@ class SysAdminConfig(AppConfig):
 
     def ready(self) -> None:
         # from apps.sys_admin import tracking
-        import apps.record.signals
+        # import apps.record.signals
+        pass
