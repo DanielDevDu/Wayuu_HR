@@ -34,7 +34,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     lookup_field = "identifier"
 
     permission_classes = [
-         IsOwnerOrSuperUser,
+        permissions.IsAuthenticated
     ]
     action_serializer_classes = {
       "create": EmployeeCreateSerializer,

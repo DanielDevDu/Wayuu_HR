@@ -44,5 +44,5 @@ class EmployeeDepartmentViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
-    serializer_class = EmployeeDepartmentSerializer
+    serializer_class = EmployeeDepartmentSerializer   
     queryset = Employee_Department.objects.all()

@@ -11,7 +11,10 @@ from django.utils.translation import gettext_lazy as _
 from apps.sys_admin.models.manager import EmployeeManager
 from django.utils import timezone
 from django.db import models
+import pgtrigger
 import uuid
+
+
 
 class BaseModel(models.Model):
     """

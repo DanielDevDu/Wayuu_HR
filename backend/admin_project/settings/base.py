@@ -63,7 +63,9 @@ INSTALLED_APPS = [
     # third apps
     'rest_framework',
     'corsheaders',
-    'django_filters'
+    'django_filters',
+    'pghistory',
+    'pgtrigger'
     # "djoser",
     # "rest_framework_simplejwt",
     # 'rest_framework.authtoken',

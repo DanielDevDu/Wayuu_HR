@@ -31,18 +31,18 @@ class EmployeeReadSerializer(BaseSerializer):
     ### Serialize relationships ###
 
     # Management
-    roles = RoleSerializer(many=True, read_only=True)
-    departments = DepartmentSerializer(many=True, read_only=True)
-    teams = serializers.HyperlinkedRelatedField(
-        read_only=True,
-        view_name="team-detail",
-        many=True
-    )
-    reports = serializers.HyperlinkedRelatedField(
-        read_only=True,
-        view_name="report-detail",
-        many=True
-    )
+    # roles = RoleSerializer(many=True, read_only=True)
+    # departments = DepartmentSerializer(many=True, read_only=True)
+    # teams = serializers.HyperlinkedRelatedField(
+    #     read_only=True,
+    #     view_name="team-detail",
+    #     many=True
+    # )
+    # reports = serializers.HyperlinkedRelatedField(
+    #     read_only=True,
+    #     view_name="report-detail",
+    #     many=True
+    # )
 
     # Record
     resume = serializers.HyperlinkedRelatedField(
@@ -113,7 +113,7 @@ class EmployeeReadSerializer(BaseSerializer):
     def get_employee_department(self, obj):
         department_by_employee = Employee_Department.objects.filter(employee=obj.id).all()
         serializer = EmployeeDepartmentSerializer(department_by_employee, many=True)
-        return serializer.data
+        return serializer.data 
     
 
 class EmployeeCreateSerializer(BaseSerializer):
