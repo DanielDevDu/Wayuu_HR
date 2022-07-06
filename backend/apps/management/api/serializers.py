@@ -69,13 +69,16 @@ class EmployeeRoleSerializer(BaseSerializer):
         model = Employee_Role
         fields = '__all__'
 
-class EmployeeDepartmentSerializer(BaseSerializer):
+class EmployeeDepartmentReadSerializer(BaseSerializer):
+
+    # lookup_field = "employee.identifier"
+
     department = serializers.SlugRelatedField(
         read_only=True,
         slug_field='name'
     )
 
-    employee = serializers.SlugRelatedField(
+    employee = serializers.SlugRelatedField( 
         read_only=True,
         slug_field='relation'
     )
@@ -83,7 +86,15 @@ class EmployeeDepartmentSerializer(BaseSerializer):
     co_workers = serializers.SerializerMethodField()
     class Meta:
         model = Employee_Department
-        fields = "__all__"
+        fields = [
+            "id",
+            "start_date",
+            "end_date",
+            "employee",
+            "department",
+            "co_workers",
+            "status"
+        ]
 
     
     def get_co_workers(self, obj):
@@ -107,3 +118,13 @@ class EmployeeDepartmentSerializer(BaseSerializer):
         } for employee in employees]
 
         return response
+    
+class EmployeeDepartmentCreateSerializer(BaseSerializer):
+    class Meta:
+        model = Employee_Department
+        fields = ["employee", "department"]
+
+class EmployeeDepartmentUpdateSerializer(BaseSerializer):
+    class Meta:
+        model = Employee_Department
+        fields = ["department"]

@@ -33,8 +33,8 @@ router.register('report', ReportViewSet, 'report')
 router.register('team', TeamViewSet, 'team')
 
 # Intermediate tables #
-router.register('employe_role', EmployeeRoleViewSet, 'employee_role')
-router.register('employe_department', EmployeeDepartmentViewSet, 'employee_department')
+router.register('employee_role', EmployeeRoleViewSet, 'employee_role')
+router.register('employee_department', EmployeeDepartmentViewSet, 'employee_department')
 
 ### Legal ###
 router.register('salary', SalaryViewSet, 'salary')

@@ -43,6 +43,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
       "list": EmployeeReadSerializer,
       "partial_update": EmployeeUpdateSerializer,
       "employee_change_password": ChangePasswordSerializer,
+      "employee_department": EmployeeDepartmentReadSerializer,
      }
     def get_serializer_class(self):
         # What serializer use?
@@ -50,6 +51,12 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
     employees = Employee.objects.all()
     queryset = employees
+
+
+    # filterset_fields = ("gender", "status", )
+    # search_fields = ("full_name", "first_name", "email", "identifier",)
+    # ordering_fields = ("full_name", "status", )
+    # ordering = ("-created_at", )
 
     @action(detail=False, methods=["GET"], url_path='active',lookup_field = "identifier")
     def empleyee_active(self, request):
@@ -89,7 +96,12 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     
-    @action(detail=True, methods=["post"],  url_path='change_password', permission_classes=[IsOwnerOrSuperUser])
+    @action(
+        detail=True, methods=["post"],
+        url_path='change_password',
+        permission_classes=[IsOwnerOrSuperUser],
+        lookup_field = "identifier"
+    )
     def employee_change_password(self, request, identifier=None):
         """
         -------------------------------------------
@@ -127,6 +139,36 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=["GET"], url_path='department', lookup_field = "identifier")
+    def employee_department(self, request, identifier=None):
+        """
+        -----------------------------------------
+        Enpoitn that return current department
+        in: /api/employee/identifier/department
+        list
+        Methods: GET
+        -----------------------------------------
+        """
+
+        current = self.get_object()
+        data = Employee_Department.objects.filter(employee=current).filter(status=True).all()
+        serializer_context = {'request': request}
+
+        # if request.method == "POST":
+        #     data = {
+        #         'department': request.data['department'],
+        #         'employee': current
+        #     }
+        #     serializer = EmployeeDepartmentCreateSerializer(data=data)
+        #     if serializer.is_valid():
+        #         serializer.save()
+        #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+        #     else:
+        #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # else:
+        serializer = EmployeeDepartmentReadSerializer(data, many=True, context=serializer_context)
+        return Response(serializer.data[0], status=status.HTTP_200_OK)
 
     
 
