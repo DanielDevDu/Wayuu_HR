@@ -1,19 +1,18 @@
-import PersonalCard from './PersonalCard';
-import ProfilePicture from './ProfilePicture';
-import React from 'react';
-
-const EMPLOYEE = "http://localhost:8000/api/employees/";
+import PersonalCard from "./PersonalCard";
+import ProfilePicture from "./ProfilePicture";
+import React from "react";
 
 
+export default function MidSection({ data, departments, roles, userId, setUserId }) {
 
-export default function MidSection() {
+  setUserId("Cristian")
+
   return (
     <div className="mid-side">
       <div className="mid-content fade-in">
         <ProfilePicture />
-        <PersonalCard />
+        <PersonalCard data={data} departments={departments} roles={roles} />
       </div>
     </div>
   );
 }
-
