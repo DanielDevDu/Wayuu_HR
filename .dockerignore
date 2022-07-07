@@ -1,2 +1,12 @@
 backup_data
 venv
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.vscode
+**/docker-compose*
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+README.md

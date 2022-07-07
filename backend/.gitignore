@@ -1,0 +1,5 @@
+__pycache__/
+data
+db.sqlite3
+**/migrations/*
+backend/logs/admin_project.log

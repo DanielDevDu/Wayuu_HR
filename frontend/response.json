@@ -1,0 +1,91 @@
+{
+    "id": "cee9e074-16bb-43ce-80e3-6353535e60d9",
+    "url": "http://localhost:8000/api/employee/cee9e074-16bb-43ce-80e3-6353535e60d9/",
+    "full_name": "Adbul Alhazared",
+    "roles": [
+        {
+            "id": "22f2e7fe-6c56-41ce-9b31-5d933ceed7a0",
+            "url": "http://localhost:8000/api/role/22f2e7fe-6c56-41ce-9b31-5d933ceed7a0/",
+            "employee": [
+                "http://localhost:8000/api/employee/cee9e074-16bb-43ce-80e3-6353535e60d9/"
+            ],
+            "department": [],
+            "create_at": "2022-07-03T17:25:47.721877-05:00",
+            "update_at": "2022-07-03T17:25:47.722632-05:00",
+            "status": true,
+            "name": "Sales Director",
+            "job_description": "Director",
+            "default_contract": "Pdf option",
+            "default_salary": 1000.0
+        }
+    ],
+    "departments": [
+        {
+            "id": "5fdebefb-f54a-446c-9986-d435f838a023",
+            "url": "http://localhost:8000/api/department/5fdebefb-f54a-446c-9986-d435f838a023/",
+            "employee": [
+                "http://localhost:8000/api/employee/cee9e074-16bb-43ce-80e3-6353535e60d9/",
+                "http://localhost:8000/api/employee/645d1b24-fc1b-4ba7-8bb4-16d99227734c/",
+                "http://localhost:8000/api/employee/c8f70483-a682-4d79-a2d5-bf2b4308b8df/",
+                "http://localhost:8000/api/employee/3354025d-244c-4aa5-9152-1bbbc6e3b59c/",
+                "http://localhost:8000/api/employee/75d46183-a8f7-48bc-99ee-2040b05c62c6/",
+                "http://localhost:8000/api/employee/6435b29f-458d-4a7a-971f-310bef7f2c70/"
+            ],
+            "roles_by_department": [],
+            "create_at": "2022-07-03T17:23:13.363767-05:00",
+            "update_at": "2022-07-03T17:23:13.364033-05:00",
+            "status": true,
+            "name": "Sales"
+        }
+    ],
+    "teams": [],
+    "reports": [],
+    "resume": "http://localhost:8000/api/resume/7056c63b-06f2-4d83-90df-1182e2dab35e/",
+    "education": [],
+    "experience": [],
+    "salary": [],
+    "socialsecurity": [],
+    "vacation": [],
+    "employee_role": [
+        {
+            "id": "84c4f623-7e9c-48d7-afb2-50061b662b45",
+            "url": "/api/employe_role/84c4f623-7e9c-48d7-afb2-50061b662b45/",
+            "role": "Sales Director",
+            "employee": "Adbul Alhazared",
+            "create_at": "2022-07-03T17:26:48.013275-05:00",
+            "update_at": "2022-07-03T17:26:48.025906-05:00",
+            "status": true,
+            "start_date": "2022-07-03T17:26:42-05:00",
+            "end_date": null
+        }
+    ],
+    "employee_department": [
+        {
+            "id": "8c03bc90-e2f2-4f3d-89a9-82029fca852d",
+            "url": "/api/employe_department/8c03bc90-e2f2-4f3d-89a9-82029fca852d/",
+            "department": "Sales",
+            "employee": "Adbul Alhazared",
+            "create_at": "2022-07-03T17:26:00.543766-05:00",
+            "update_at": "2022-07-03T17:26:00.559194-05:00",
+            "status": true,
+            "start_date": "2022-07-03T17:25:55-05:00",
+            "end_date": null
+        }
+    ],
+    "last_login": null,
+    "is_superuser": false,
+    "create_at": "2022-07-03T17:12:54.566017-05:00",
+    "update_at": "2022-07-03T17:12:54.729260-05:00",
+    "status": true,
+    "first_name": "Adbul",
+    "middle_name": "",
+    "last_name": "Alhazared",
+    "last_name_second": "",
+    "identifier": 1002,
+    "email": "Adbul.Alhazared12@gmail.com",
+    "username": "Adbul.Alhazared12",
+    "is_active": true,
+    "is_staff": false,
+    "groups": [],
+    "user_permissions": []
+}
