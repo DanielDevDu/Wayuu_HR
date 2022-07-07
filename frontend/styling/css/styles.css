@@ -1,0 +1,339 @@
+/*==================== GOOGLE FONTS ====================*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*==================== VARIABLES CSS ====================*/
+:root {
+    --header-height: 3rem;
+
+    /*========== Colors ==========*/
+    /* Change favorite color */
+    --hue-color: 276;
+    /*Purple 250 - Green 142 - Blue 230 - Pink 340* - Mycolor 276/
+
+    /* HSL color mode */
+    --first-color: hsl(var(--hue-color), 30%, 61%);
+    --first-color-second: hsl(var(--hue-color), 100%, 87%);
+    --first-color-3: hsl(var(--hue-color), 47%, 93%, 0.5);
+    --first-color-alt: hsl(var(--hue-color), 47%, 75%);
+    --first-color-lighter: hsl(var(--hue-color), 47%, 93%);
+    --title-color: hsl(var(--hue-color), 8%, 15%);
+    --text-color: hsl(var(--hue-color), 8%, 45%);
+    --text-color-light: hsl(var(--hue-color), 8%, 65%);
+    --input-color: hsl(var(--hue-color), 70%, 96%);
+    --body-color: hsl(var(--hue-color), 60%, 99%);
+    --container-color: #fff;
+    --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+    --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Poppins', sans-serif;
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --big-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*========== Margenes Bottom ==========*/
+    /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+/*==================== MAIN CONTAINER ====================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--body-font);
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/*==================== CONTAINERS ====================*/
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: 730px;
+    margin: 10px;
+    background: var(--body-color);
+    display: grid;
+    grid-template-columns: .2fr 2fr 3fr;
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+}
+
+/*==================== LEFT CONTAINER ====================*/
+.container .left-side {
+    position: relative;
+    background: var(--first-color-second);
+    padding: 40px;
+}
+
+.imgBx {
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin-left: 5px;
+}
+
+.wayuutitle {
+    display: flex;
+    margin-left: 10px;
+    margin-bottom: 40px;
+}
+
+.home__title {
+    color: var(--text-color);
+}
+
+/*==================== MID CONTAINER ====================*/
+.container .mid-side {
+    position: relative;
+    background: var(--first-color);
+    padding: 40px;
+}
+
+.mid-content {
+    display: grid;
+    grid-template-rows: 325px 325px;
+}
+
+.home__blob {
+    width: 320px;
+    fill: var(--first-color-second);
+    margin-left: 50px;
+}
+
+.home__blob-img {
+    width: 300px;
+}
+
+.home-data {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.home-data ul {
+    position: relative;
+}
+
+.home-data ul li {
+    position: relative;
+    list-style: none;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.home-data ul li .icon {
+    display: inline-block;
+    width: 15px;
+    font-size: var(--normal-font-size);
+    color: black;
+    margin-left: 50px;
+}
+
+.home-data ul li .text-tittle {
+    color: black;
+}
+
+.home-data ul li span {
+    color: var(--first-color-second);
+    font-weight: var(--font-medium);
+}
+
+.home-data-text2 span:hover {
+    color: var(--first-color-alt);
+}
+
+/*========== EMAIL ==========*/
+/* .home-data ul li .text2{
+    margin-left: 74px;
+}
+
+.home-data ul li .text2:hover{
+    color: var(--first-color-alt);
+} */
+
+/*========== ROLE ==========*/
+/* .home-data ul li .text3{
+    margin-left: 83px;
+}
+
+.home-data ul li .text3:hover{
+    color: var(--first-color-alt);
+}
+ */
+/*========== POSITION ==========*/
+/* .home-data ul li .text4{
+    margin-left: 56px;
+}
+
+.home-data ul li .text4:hover{
+    color: var(--first-color-alt);
+} */
+
+
+/*==================== RIGHT CONTAINER ====================*/
+.container .right-side {
+    position: relative;
+    background: var(--first-color-alt);
+    padding: 40px;
+}
+
+.teams-container {
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--first-color-3);
+    width: 700px;
+    height: 600px;
+    overflow: auto;
+    text-align: justify;
+    border-radius: 10px;
+}
+
+.team-tittle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 2px solid var(--first-color);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.team-tittle:hover {
+    box-shadow: 0 5px 55px var(--first-color);
+}
+
+.member {
+    border: 2px solid var(--first-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px 10px 10px;
+}
+
+.home__subtitle:hover {
+    color: var(--first-color);
+}
+
+/*==================== BUTTONS ====================*/
+button {
+    margin: 10px;
+    outline: none;
+}
+
+.custom-btn {
+    width: 80px;
+    height: 40px;
+    padding: 10px 2px;
+    border: 2px solid var(--first-color);
+    border-radius: 25px;
+    font-family: var(--body-font);
+    font-weight: 400;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+/* 1 */
+.btn-1 {
+    transition: all 0.3s ease;
+}
+
+.btn-1:hover {
+    box-shadow: 0 5px 55px var(--first-color);
+}
+
+.left-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100px;
+    height: 500px;
+}
+
+/*==================== REUSABLE CSS CLASSES ====================*/
+.section {
+    padding: 2rem 0 4rem;
+}
+
+.section__title {
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
+}
+
+.section__subtitle {
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-3);
+}
+
+.section__title,
+.section__subtitle {
+    text-align: center;
+}
+
+.fade-in {
+    animation: fadeIn 4s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    ;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--first-color);
+    border-radius: 10px;
+}
