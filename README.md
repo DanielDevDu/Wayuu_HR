@@ -1,4 +1,4 @@
-# AirBnB Clone - The Console :rocket:
+# Wayuu HR
 
  | ![Alt text](https://www.simplilearn.com/ice9/free_resources_article_thumb/Top_10_HR_Concepts_And_Terms.jpg "Title") |
  | ----------------------------------------------------------------- |
